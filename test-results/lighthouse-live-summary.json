@@ -1,35 +1,36 @@
 {
   "/": {
     "mobile": {
-      "score": 96,
+      "score": 100,
       "metrics": {
-        "lcp": "1.8 s",
+        "lcp": "1.5 s",
         "tbt": "0 ms",
-        "cls": "0",
-        "fcp": "1.5 s",
-        "speedIndex": "4.8 s"
+        "cls": "0.041",
+        "fcp": "1.2 s",
+        "speedIndex": "1.2 s"
       }
     },
     "desktop": {
-      "score": 94,
+      "score": 85,
       "metrics": {
-        "lcp": "1.4 s",
+        "lcp": "1.9 s",
         "tbt": "0 ms",
         "cls": "0.031",
-        "fcp": "1.1 s",
-        "speedIndex": "1.1 s"
-      }
+        "fcp": "1.6 s",
+        "speedIndex": "1.6 s"
+      },
+      "diagnostics": []
     }
   },
   "/loesung": {
     "mobile": {
       "score": 100,
       "metrics": {
-        "lcp": "1.2 s",
+        "lcp": "1.1 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "0.9 s",
-        "speedIndex": "0.9 s"
+        "fcp": "0.8 s",
+        "speedIndex": "0.8 s"
       }
     },
     "desktop": {
@@ -45,23 +46,23 @@
   },
   "/buch": {
     "mobile": {
-      "score": 100,
+      "score": 99,
       "metrics": {
-        "lcp": "1.3 s",
+        "lcp": "1.6 s",
         "tbt": "0 ms",
         "cls": "0.012",
-        "fcp": "0.8 s",
-        "speedIndex": "0.8 s"
+        "fcp": "1.4 s",
+        "speedIndex": "1.4 s"
       }
     },
     "desktop": {
-      "score": 84,
+      "score": 76,
       "metrics": {
-        "lcp": "2.0 s",
+        "lcp": "1.9 s",
         "tbt": "0 ms",
-        "cls": "0.011",
-        "fcp": "1.5 s",
-        "speedIndex": "1.5 s"
+        "cls": "0.196",
+        "fcp": "1.6 s",
+        "speedIndex": "1.6 s"
       },
       "diagnostics": []
     }
@@ -71,55 +72,56 @@
       "score": 100,
       "metrics": {
         "lcp": "1.1 s",
-        "tbt": "80 ms",
-        "cls": "0",
-        "fcp": "0.8 s",
-        "speedIndex": "0.9 s"
-      }
-    },
-    "desktop": {
-      "score": 97,
-      "metrics": {
-        "lcp": "1.1 s",
         "tbt": "60 ms",
         "cls": "0",
         "fcp": "0.8 s",
         "speedIndex": "0.8 s"
       }
     },
-    "iframeVisibleMs": 319
+    "desktop": {
+      "score": 97,
+      "metrics": {
+        "lcp": "1.1 s",
+        "tbt": "90 ms",
+        "cls": "0",
+        "fcp": "0.8 s",
+        "speedIndex": "0.8 s"
+      }
+    },
+    "iframeVisibleMs": 262
   },
   "/quick-check": {
     "mobile": {
-      "score": 100,
+      "score": 99,
       "metrics": {
-        "lcp": "1.4 s",
+        "lcp": "1.7 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "1.3 s",
-        "speedIndex": "1.3 s"
+        "fcp": "1.6 s",
+        "speedIndex": "1.6 s"
       }
     },
     "desktop": {
-      "score": 95,
+      "score": 86,
       "metrics": {
-        "lcp": "1.3 s",
+        "lcp": "1.7 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "1.0 s",
-        "speedIndex": "1.0 s"
-      }
+        "fcp": "1.6 s",
+        "speedIndex": "1.6 s"
+      },
+      "diagnostics": []
     }
   },
   "/solutions-atlas": {
     "mobile": {
-      "score": 99,
+      "score": 100,
       "metrics": {
-        "lcp": "1.6 s",
-        "tbt": "50 ms",
+        "lcp": "1.1 s",
+        "tbt": "60 ms",
         "cls": "0.003",
-        "fcp": "1.4 s",
-        "speedIndex": "1.4 s"
+        "fcp": "0.8 s",
+        "speedIndex": "1.2 s"
       }
     },
     "desktop": {
@@ -129,20 +131,20 @@
         "tbt": "50 ms",
         "cls": "0.003",
         "fcp": "0.8 s",
-        "speedIndex": "1.1 s"
+        "speedIndex": "1.2 s"
       }
     },
-    "iframeVisibleMs": 250
+    "iframeVisibleMs": 253
   },
   "/impressum": {
     "mobile": {
       "score": 100,
       "metrics": {
-        "lcp": "1.1 s",
+        "lcp": "1.3 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "0.8 s",
-        "speedIndex": "0.8 s"
+        "fcp": "1.1 s",
+        "speedIndex": "1.1 s"
       }
     },
     "desktop": {
@@ -160,21 +162,21 @@
     "mobile": {
       "score": 100,
       "metrics": {
-        "lcp": "1.4 s",
+        "lcp": "1.1 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "1.3 s",
-        "speedIndex": "1.3 s"
+        "fcp": "0.8 s",
+        "speedIndex": "0.8 s"
       }
     },
     "desktop": {
-      "score": 92,
+      "score": 97,
       "metrics": {
-        "lcp": "1.4 s",
+        "lcp": "1.1 s",
         "tbt": "0 ms",
         "cls": "0",
-        "fcp": "1.3 s",
-        "speedIndex": "1.3 s"
+        "fcp": "0.8 s",
+        "speedIndex": "0.8 s"
       }
     }
   }

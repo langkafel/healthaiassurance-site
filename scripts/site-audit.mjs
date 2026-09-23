@@ -214,7 +214,13 @@ async function playQuickCheck(browser) {
     await page.click('button:has-text("Quick Check starten")', { timeout: 10000 });
     result.started = true;
 
-    for (let i = 0; i < 12; i++) {
+    // Question count isn't hardcoded here -- read it from the progress
+    // label ("Frage 1 / N") so this doesn't silently under-run (and time
+    // out waiting for the result screen) if the question set changes size.
+    const progressText = (await page.locator('#progressCount').textContent()) || '';
+    const totalQuestions = parseInt(progressText.split('/')[1]?.trim() || '0', 10) || 20;
+
+    for (let i = 0; i < totalQuestions; i++) {
       await page.waitForSelector('#qopts .opt', { timeout: 10000 });
       await page.click('#qopts .opt >> nth=0');
       result.questionsAnswered++;
@@ -222,6 +228,8 @@ async function playQuickCheck(browser) {
       await nextBtn.waitFor({ state: 'visible', timeout: 10000 });
       await nextBtn.click();
       await page.waitForTimeout(150);
+      const resultActive = await page.locator('#screen-result.active').count();
+      if (resultActive) break;
     }
 
     await page.waitForSelector('#screen-result.active', { timeout: 10000 });

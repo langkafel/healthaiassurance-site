@@ -26,3 +26,9 @@ Thumbs.db
 
 # jetbrains setting folder
 .idea/
+
+# ad-hoc audit/verification screenshots and raw data -- audit reports
+# (test-results/*.md) stay tracked, only the noisy screenshots and raw
+# JSON dumps behind them are ignored going forward
+test-results/screenshots/
+test-results/*.json

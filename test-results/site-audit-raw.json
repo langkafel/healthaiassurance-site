@@ -635,9 +635,9 @@
           "screenshot": "screenshots\\incident-atlas-375.png",
           "hasHorizontalOverflow": false,
           "iframeCheck": {
-            "wrapperHeight": 21559,
-            "innerScrollHeight": 21557,
-            "innerClientHeight": 21557,
+            "wrapperHeight": 21558,
+            "innerScrollHeight": 21556,
+            "innerClientHeight": 21556,
             "noDoubleScroll": true
           },
           "consoleIssues": []
@@ -646,9 +646,9 @@
           "screenshot": "screenshots\\incident-atlas-1440.png",
           "hasHorizontalOverflow": false,
           "iframeCheck": {
-            "wrapperHeight": 9135,
-            "innerScrollHeight": 9134,
-            "innerClientHeight": 9134,
+            "wrapperHeight": 9129,
+            "innerScrollHeight": 9127,
+            "innerClientHeight": 9127,
             "noDoubleScroll": true
           },
           "consoleIssues": []
@@ -878,8 +878,13 @@
           "target": "_blank"
         },
         {
-          "href": "/",
-          "text": "Zum Buch & zu den Werkzeugen",
+          "href": "/buch",
+          "text": "Buch vorbestellen",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Mich kontaktieren",
           "target": ""
         },
         {
@@ -959,10 +964,16 @@
           "note": "status ERR:fetch failed"
         },
         {
-          "href": "/",
+          "href": "/buch",
           "kind": "internal",
           "ok": true,
           "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
         },
         {
           "href": "/impressum",
@@ -991,9 +1002,9 @@
           "screenshot": "screenshots\\solutions-atlas-375.png",
           "hasHorizontalOverflow": false,
           "iframeCheck": {
-            "wrapperHeight": 4475,
-            "innerScrollHeight": 4473,
-            "innerClientHeight": 4473,
+            "wrapperHeight": 4478,
+            "innerScrollHeight": 4476,
+            "innerClientHeight": 4476,
             "noDoubleScroll": true
           },
           "consoleIssues": []
@@ -1002,9 +1013,9 @@
           "screenshot": "screenshots\\solutions-atlas-1440.png",
           "hasHorizontalOverflow": false,
           "iframeCheck": {
-            "wrapperHeight": 2466,
-            "innerScrollHeight": 2464,
-            "innerClientHeight": 2464,
+            "wrapperHeight": 2459,
+            "innerScrollHeight": 2457,
+            "innerClientHeight": 2457,
             "noDoubleScroll": true
           },
           "consoleIssues": []
@@ -1517,9 +1528,9 @@
   },
   "quickCheck": {
     "started": true,
-    "questionsAnswered": 12,
+    "questionsAnswered": 15,
     "resultShown": true,
-    "resultText": "1 von 12 Fragen richtig · 23. September 2026",
+    "resultText": "1 von 15 Fragen richtig · 23. September 2026",
     "restartWorks": true,
     "errors": []
   },
