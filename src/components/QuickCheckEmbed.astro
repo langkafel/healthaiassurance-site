@@ -1,15 +1,23 @@
 ---
-// Content, questions and quiz logic are taken unchanged from
-// source-files/wissenscheck (2).html. Only the following were adapted so it
-// can be embedded directly in the Astro layout instead of via <iframe>:
+// Quick Check content is the 15-question master set from Peter (legal/
+// factual status 2026-09-23), replacing the earlier 12-question/4-option
+// draft in full. 5 answer options (A-E) per question now. Questions are
+// grouped into 5 thematic categories (see CATEGORIES/QUESTIONS below),
+// used for the per-category breakdown on the result screen.
+//
+// Adapted from the raw content (not otherwise touched) so it can be
+// embedded directly in the Astro layout instead of via <iframe>:
 // - CSS selectors scoped under `.quickcheck` to avoid colliding with the
 //   site's own `body`, `a`, `h1`, `h2`, `.btn`, `footer` rules
 // - its own Google Fonts <link> tags removed (fonts are already self-hosted
 //   project-wide; the file requested Montserrat 600 specifically, which has
 //   been added to public/fonts/ + fonts.css to match)
-// - the two absolute self-referential links now point to relative site paths
-// - the quiz script wrapped in an IIFE, exposing only the four handlers the
+// - the quiz script wrapped in an IIFE, exposing only the handlers the
 //   inline onclick="" attributes need on window
+// - book chapter references are explicitly labelled "(vorläufig)" and
+//   styled as secondary/muted text, per Peter: the book isn't final yet
+// - sources in this question set are citations without URLs (none were
+//   supplied) -- rendered as plain text, not fabricated links
 ---
 
 <div class="quickcheck">
@@ -18,17 +26,24 @@
       <div class="eyebrow">Health AI Assurance · Quick Check</div>
       <h1>Wie gut kennen Sie die Fallstricke?</h1>
       <p class="muted" style="font-size:16.5px;max-width:600px;">
-        12 Fragen zu EU AI Act, Halluzinationen, Bias, Governance und Betrieb – aus der Praxis dokumentierter
-        KI-Vorfälle im Gesundheitswesen. Direkt nach jeder Antwort erfahren Sie, ob Sie richtig lagen – und
-        welches Buchkapitel das Thema vertieft.
+        15 Fragen zu EU AI Act, EHDS, klinischer Validierung, Halluzinationen, Governance, Sicherheit und
+        Wirtschaftlichkeit – aus der Praxis dokumentierter KI-Vorfälle und aktueller Regulatorik im
+        Gesundheitswesen. Direkt nach jeder Antwort erfahren Sie, ob Sie richtig lagen – und welches
+        (vorläufige) Buchkapitel das Thema vertieft.
       </p>
       <div class="topic-grid">
-        <div class="topic-tile"><strong>Regulatorik</strong>EU AI Act, EHDS, NIS2</div>
-        <div class="topic-tile"><strong>Testing &amp; Validierung</strong>Was „geprüft" wirklich heißt</div>
-        <div class="topic-tile"><strong>Bias &amp; Fehlerbilder</strong>Halluzinationen, Subgruppen</div>
-        <div class="topic-tile"><strong>Governance</strong>Human Oversight, Vendor-Risiko</div>
+        <div class="topic-tile"><strong>Regulatorik &amp; Verantwortung</strong>EU AI Act, EHDS, Anbieter-/Betreiberrollen</div>
+        <div class="topic-tile"><strong>Klinische Validierung &amp; Fairness</strong>Externe Validierung, Bias, Subgruppen</div>
+        <div class="topic-tile"><strong>Halluzinationen &amp; Betrieb</strong>Guardrails, Model Drift, Monitoring</div>
+        <div class="topic-tile"><strong>Governance &amp; Sicherheit</strong>NIS2, Incident Management, Schatten-KI</div>
+        <div class="topic-tile"><strong>Wirtschaftlichkeit &amp; Umsetzung</strong>TCO, Pilot zu Regelbetrieb</div>
       </div>
-      <p class="intro-meta">⏱ ca. 4 Minuten · 12 Fragen · Sofort-Feedback mit Kapitelverweis · Kein Login nötig</p>
+      <p class="intro-meta">⏱ ca. 6 Minuten · 15 Fragen · Sofort-Feedback · Kein Login nötig</p>
+      <p class="intro-disclaimer">
+        Dieser Quick Check ist ein Wissenstest – keine Zertifizierung, keine Compliance-Prüfung und keine
+        Rechts- oder Medizinberatung.<br />
+        Stand: 23. September 2026.
+      </p>
       <button class="btn" onclick="startQuiz()">Quick Check starten</button>
     </div>
   </section>
@@ -37,7 +52,7 @@
     <div class="wrap">
       <div class="progress-wrap">
         <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-count" id="progressCount">Frage 1 / 12</div>
+        <div class="progress-count" id="progressCount">Frage 1 / 15</div>
         <div class="score-live" id="scoreLive">0 richtig</div>
       </div>
       <div class="qcard" id="qcard">
@@ -61,12 +76,18 @@
       <div class="score-hero">
         <div class="score-circle" id="scoreCircle">
           <span class="pct" id="scorePct">–</span>
-          <span class="of">von 12 richtig</span>
+          <span class="of">von 15 richtig</span>
         </div>
         <div class="score-verdict">
           <span class="verdict-badge" id="verdictBadge">–</span>
           <p id="verdictText"></p>
         </div>
+      </div>
+
+      <div class="category-section">
+        <h2>Stärken &amp; Schwerpunkte</h2>
+        <p class="cat-insight" id="catInsight"></p>
+        <div class="category-breakdown" id="categoryBreakdown"></div>
       </div>
 
       <div class="review">
@@ -77,13 +98,17 @@
       <div class="result-cta">
         <blockquote>„Vertrauen entsteht durch Prüfung, <span>nicht durch Versprechen.</span>"</blockquote>
         <p>
-          Jede Frage hier ist ein Ausschnitt aus einem Kapitel des Buches <em>„Vertrauenswürdige KI – Der
-          Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT"</em> (medhochzwei Verlag). Die
-          Kapitelverweise oben zeigen Ihnen genau, wo Sie vertiefen können.
+          Jede Frage hier ist einem (vorläufigen) Kapitel des entstehenden Buches <em>„Vertrauenswürdige KI –
+          Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT"</em> (medhochzwei Verlag)
+          zugeordnet.
         </p>
+        <p class="cta-hint">Beides freiwillig und unverbindlich:</p>
+        <div class="primary-ctas">
+          <a class="btn" href="/buch">Buch vorbestellen</a>
+          <a class="btn secondary" href="mailto:info@peter-langkafel.de">Mich kontaktieren</a>
+        </div>
         <div class="result-btns no-print">
-          <button class="btn" onclick="window.print()">Ergebnis drucken / als PDF sichern</button>
-          <a class="btn secondary" href="/">Zum Buch &amp; zu den Werkzeugen</a>
+          <button class="btn secondary" onclick="window.print()">Ergebnis drucken / als PDF sichern</button>
           <button class="btn secondary" onclick="restart()">Nochmal versuchen</button>
         </div>
       </div>
@@ -98,7 +123,12 @@
   </div>
 </div>
 
-<style>
+<style is:global>
+  /* Global (not Astro-scoped): most of this component's markup (answer
+     buttons, feedback, review list, category bars) is injected via
+     innerHTML at runtime, which never receives Astro's scoping
+     data-attribute -- scoped styles silently wouldn't apply to any of it.
+     The .quickcheck wrapper class already provides the namespacing. */
   .quickcheck {
     --bg-page: var(--color-bg);
     --bg-card: var(--color-card);
@@ -208,7 +238,14 @@
   .quickcheck .intro-meta {
     font-size: 14px;
     color: var(--footer);
-    margin: 18px 0 26px;
+    margin: 18px 0 14px;
+  }
+
+  .quickcheck .intro-disclaimer {
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0 0 26px;
   }
 
   .quickcheck .progress-wrap {
@@ -270,27 +307,28 @@
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 18px;
-    line-height: 1.45;
-    margin-bottom: 20px;
+    line-height: 1.4;
+    margin-bottom: 18px;
   }
 
   .quickcheck .opts {
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 7px;
   }
 
   .quickcheck .opt {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
     background: var(--bg-page);
     border: 1px solid var(--border);
     color: var(--text);
     border-radius: 8px;
-    padding: 13px 16px;
+    padding: 11px 14px;
     font-family: 'Inter', sans-serif;
-    font-size: 14.5px;
+    font-size: 14px;
+    line-height: 1.4;
     font-weight: 500;
     cursor: pointer;
     text-align: left;
@@ -304,8 +342,8 @@
 
   .quickcheck .opt .letter {
     flex-shrink: 0;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     border: 1px solid var(--border);
     display: flex;
@@ -313,7 +351,7 @@
     justify-content: center;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
   }
 
@@ -392,16 +430,11 @@
     margin-bottom: 9px;
   }
 
-  .quickcheck .feedback .chap {
-    display: inline-block;
-    font-size: 12.5px;
-    color: var(--cyan);
-    font-weight: 600;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 5px 11px;
-    margin-right: 8px;
+  .quickcheck .book-ref {
+    display: block;
+    font-size: 11px;
+    color: var(--muted);
+    font-style: italic;
     margin-bottom: 6px;
   }
 
@@ -410,18 +443,7 @@
     display: block;
     font-size: 12px;
     color: var(--footer);
-    margin-top: 8px;
-  }
-
-  .quickcheck .feedback .src a,
-  .quickcheck .rev-item .src a {
-    color: var(--footer);
-    text-decoration: underline;
-  }
-
-  .quickcheck .feedback .src a:hover,
-  .quickcheck .rev-item .src a:hover {
-    color: var(--cyan);
+    margin-top: 4px;
   }
 
   .quickcheck .buy-nudge {
@@ -522,6 +544,61 @@
     border-color: var(--red);
   }
 
+  .quickcheck .category-section {
+    margin-bottom: 26px;
+  }
+
+  .quickcheck .category-section h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .quickcheck .cat-insight {
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .quickcheck .category-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .quickcheck .cat-row-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 5px;
+    font-size: 12.5px;
+  }
+
+  .quickcheck .cat-name {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .quickcheck .cat-frac {
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .quickcheck .cat-track {
+    height: 7px;
+    background: var(--bg-card-alt);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .quickcheck .cat-fill {
+    height: 100%;
+    background: var(--cyan);
+    border-radius: 99px;
+  }
+
   .quickcheck .review {
     margin-bottom: 26px;
   }
@@ -588,13 +665,8 @@
     margin-left: 28px;
   }
 
-  .quickcheck .rev-item .chap {
+  .quickcheck .rev-item .book-ref {
     margin-left: 28px;
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--cyan);
-    font-weight: 600;
   }
 
   .quickcheck .rev-item .src {
@@ -626,11 +698,26 @@
     font-size: 14.5px;
   }
 
+  .quickcheck .cta-hint {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--footer);
+  }
+
+  .quickcheck .primary-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
   .quickcheck .result-btns {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
   }
 
   .quickcheck-disclaimer {
@@ -686,169 +773,292 @@
 
 <script is:inline>
   (function () {
+    var CATEGORIES = [
+      "Regulatorik & Verantwortung",
+      "Klinische Validierung & Fairness",
+      "Halluzinationen & Betrieb",
+      "Governance & Sicherheit",
+      "Wirtschaftlichkeit & Umsetzung"
+    ];
+
     var QUESTIONS = [
       {
-        cat: "Regulatorik · EU AI Act",
-        q: "Ab welchem Datum müssen Chatbots und Sprachassistenten in Kliniken die KI-Interaktion transparent kennzeichnen (Art. 50 EU AI Act)?",
-        opts: ["2. Februar 2025", "2. August 2026", "2. Dezember 2026", "Erst mit MDR-Rezertifizierung"],
-        correct: 1,
-        expl: "Art. 50 EU AI Act wird zum 2. August 2026 unmittelbar anwendbar – die Watermarking-Pflicht nach Art. 50 Abs. 2 folgt separat zum 2. Dezember 2026.",
-        chapter: "Kapitel 14 · Patientenaufklärung und Consent (Drei-Spuren-Modell)",
-        source: { label: "Verordnung (EU) 2024/1689, Art. 50 – EUR-Lex", url: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689" }
-      },
-      {
-        cat: "Testing & Validierung",
-        q: "Die externe Validierung des Epic Sepsis Model ergab eine AUC von 0,63 statt der berichteten 0,76–0,83. Was war die zentrale Lehre daraus?",
+        n: 1,
+        category: "Regulatorik & Verantwortung",
+        title: "EU AI Act – die neuen Fristen",
+        q: "Was hat die EU mit der 2026 verabschiedeten AI-Omnibus-Verordnung an den Fristen für Hochrisiko-KI geändert?",
         opts: [
-          "Sepsis-Modelle sind grundsätzlich ungeeignet für den klinischen Einsatz",
-          "Herstellerangaben ersetzen keine standortspezifische externe Validierung",
-          "Das Modell wurde absichtlich manipuliert",
-          "AUC ist als Kennzahl für Sepsis-Modelle ungeeignet"
+          "Sämtliche KI-Pflichten beginnen einheitlich erst 2030.",
+          "Die maßgeblichen Hochrisikoanforderungen gelten für Systeme nach Anhang III ab 2. Dezember 2027 und für Systeme nach Anhang I ab 2. August 2028.",
+          "Der AI Act wurde vollständig aufgehoben.",
+          "Nur deutsche Krankenhäuser erhielten eine zusätzliche Übergangsfrist.",
+          "Für alle Hochrisiko-KI-Systeme blieb unverändert der 2. August 2026 maßgeblich."
         ],
         correct: 1,
-        expl: "Das Modell war in Hunderten Kliniken im Einsatz, oft auf Basis der Herstellerangaben. Erst die unabhängige Prüfung mit eigenen Patientendaten deckte die schwache Leistung auf.",
-        chapter: "Kapitel 17 · Teststrategie entlang des Lifecycles",
-        source: { label: "Wong et al., JAMA Internal Medicine, 2021", url: "https://jamanetwork.com/journals/jamainternalmedicine/fullarticle/2781307" }
+        expl: "Die Verordnung (EU) 2026/1744 verschiebt den Anwendungsbeginn wesentlicher Hochrisikoanforderungen der Kapitel-III-Abschnitte 1 bis 3. Entscheidend ist die richtige Einordnung des konkreten Systems: Für Hochrisiko-KI gemäß Artikel 6 Absatz 2 und Anhang III gilt der 2. Dezember 2027; für die unter Artikel 6 Absatz 1 und Anhang I fallenden Systeme der 2. August 2028. Andere bereits anwendbare Anforderungen sowie die Vorschriften für Medizinprodukte bleiben zu prüfen. Die zusätzliche Zeit sollte für KI-Inventar, Klassifizierung, Verantwortlichkeiten und Nachweise verwendet werden.",
+        bookRef: "Teil II – EU AI Act, MDR/IVDR und Übergangsfristen",
+        sources: ["Verordnung (EU) 2026/1744, Änderung von Artikel 113 des AI Act"]
       },
       {
-        cat: "Bias & Fehlerbilder",
-        q: "Im Obermeyer-Fall (Science, 2019) diskriminierte ein Versorgungsalgorithmus afroamerikanische Patientinnen und Patienten. Was war die technische Ursache?",
+        n: 2,
+        category: "Regulatorik & Verantwortung",
+        title: "EHDS – Gesundheitsdaten für KI",
+        q: "Unter welchen Bedingungen können Gesundheitsdaten aus dem European Health Data Space künftig zum Trainieren und Testen von KI verwendet werden?",
         opts: [
-          "Zu wenige Trainingsdaten für diese Patientengruppe",
-          "Prognostizierte Gesundheitskosten als Ersatzgröße für tatsächlichen Versorgungsbedarf",
-          "Ein Programmierfehler im Kernalgorithmus",
-          "Fehlende Zustimmung der Patienten zur Datennutzung"
+          "Jedes Unternehmen darf alle Daten ohne Genehmigung frei herunterladen.",
+          "Eine Pseudonymisierung ersetzt sämtliche weiteren Zugangsvoraussetzungen.",
+          "Der EHDS verbietet das Training medizinischer KI grundsätzlich.",
+          "Für ausdrücklich zugelassene Sekundärnutzungszwecke ist dies über die vorgesehenen Zugangsverfahren und unter Einhaltung der Schutzmaßnahmen möglich.",
+          "Nur staatliche Stellen dürfen grundsätzlich Algorithmen trainieren."
         ],
-        correct: 1,
-        expl: "Weil historisch weniger Geld für die Versorgung afroamerikanischer Patientinnen und Patienten ausgegeben wurde, bewertete der Algorithmus sie bei gleicher Krankheitslast als weniger bedürftig. Bias entsteht oft in der Zielvariable, nicht im Modellcode.",
-        chapter: "Kapitel 19 · Robustheit und Subgruppen",
-        source: { label: "Obermeyer et al., Science, 2019", url: "https://doi.org/10.1126/science.aax2342" }
+        correct: 3,
+        expl: "Artikel 53 der EHDS-Verordnung (EU) 2025/327 nennt Entwicklungs- und Innovationstätigkeiten einschließlich Training, Testen und Evaluierung von Algorithmen als zulässige Sekundärnutzungszwecke. Das begründet keinen freien Zugriff: Erforderlich sind der passende Zweck, der gesetzlich vorgesehene Datenzugang und die jeweiligen Datenschutz- und Sicherheitsmaßnahmen. Zudem werden die Regelungen zur Sekundärnutzung überwiegend erst ab März 2029 anwendbar. Für bestehende Projekte bleiben bereits heute DSGVO und nationales Recht relevant.",
+        bookRef: "Teil II – EHDS, DSGVO und Daten-Governance",
+        sources: [
+          "EHDS-Verordnung (EU) 2025/327, Art. 53–54 und Anwendungsregeln",
+          "Europäische Kommission: EHDS-Überblick und Zeitplan"
+        ]
       },
       {
-        cat: "Governance & Oversight",
-        q: "Was unterscheidet wirksame menschliche Aufsicht (Human Oversight) von einem bloßen Freigabe-Klick?",
+        n: 3,
+        category: "Regulatorik & Verantwortung",
+        title: "Vom Betreiber zum Anbieter",
+        q: "Unter welchen Umständen kann eine Gesundheitseinrichtung nach Artikel 25 AI Act selbst zum Anbieter eines Hochrisiko-KI-Systems werden?",
         opts: [
-          "Wirksame Aufsicht braucht ausschließlich mehr Personal",
-          "Rechte, Kompetenz, Zeit und ein klarer Eskalationsweg müssen zusammenkommen",
-          "Ein Mensch muss jede einzelne Ausgabe lesen",
-          "Oversight ist primär eine IT-Aufgabe"
-        ],
-        correct: 1,
-        expl: "Ein Mensch „in der Schleife“ ist noch kein Kontrollmodell. Ohne Eingriffsrechte, fachliche Kompetenz, ausreichend Zeit und einen definierten Eskalationsweg bleibt Aufsicht Dekoration.",
-        chapter: "Kapitel 21 · Transparenz und Human Oversight",
-        source: { label: "Verordnung (EU) 2024/1689, Art. 14 – EUR-Lex", url: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689" }
-      },
-      {
-        cat: "Regulatorik · Daten",
-        q: "Welche EU-Verordnung schafft erstmals eine EU-weite Rechtsgrundlage dafür, Gesundheitsdaten zum Training von KI-Algorithmen zu nutzen?",
-        opts: ["DSGVO", "NIS2", "EHDS-Verordnung (EU) 2025/327", "MDR"],
-        correct: 2,
-        expl: "Art. 53 der EHDS-Verordnung nennt Training, Testen und Validieren von Algorithmen ausdrücklich als zulässigen Sekundärnutzungszweck – zuvor war das EU-weit eine Grauzone.",
-        chapter: "Special EHDS",
-        source: { label: "Verordnung (EU) 2025/327, Art. 53 – EUR-Lex", url: "https://eur-lex.europa.eu/eli/reg/2025/327/oj?eliuri=eli:reg:2025:327:oj&locale=de" }
-      },
-      {
-        cat: "Halluzinationen & Guardrails",
-        q: "Eine Studie zu einem KI-Transkriptionstool in der klinischen Dokumentation fand Halluzinationen in rund 1 % der Aufnahmen. Was war der eigentliche Assurance-Skandal daneben?",
-        opts: [
-          "Die Fehlerquote von 1 % war ungewöhnlich hoch",
-          "Das Tool löschte die Original-Audiodaten, sodass sich Fehler nicht mehr nachträglich prüfen ließen",
-          "Das Tool war nicht für medizinische Zwecke lizenziert",
-          "Die Halluzinationen betrafen nur die Rechtschreibung"
-        ],
-        correct: 1,
-        expl: "Ohne Ground Truth ließ sich im Nachhinein nicht mehr feststellen, welche Passagen der Patientenakte echt waren. Nachweisbarkeit ist ein integraler Teil von Sicherheit – nicht nur die Fehlerquote selbst.",
-        chapter: "Kapitel 18 · Halluzinationen und Fehlerbilder",
-        source: { label: "Koenecke et al., „Careless Whisper“, ACM FAccT, 2024", url: "https://doi.org/10.1145/3630106.3658996" }
-      },
-      {
-        cat: "Vendor & Beschaffung",
-        q: "Wann kann ein Betreiber eines KI-Systems nach EU AI Act selbst in die Rolle des Anbieters rutschen?",
-        opts: [
-          "Nie – die Rolle ist beim Kauf fest zugewiesen",
-          "Nur bei Systemen aus Drittstaaten",
-          "Wenn er ein GPAI-Modell wesentlich verändert oder unter eigenem Namen bereitstellt (Art. 25)",
-          "Nur wenn er das System kostenlos weitergibt"
+          "Schon beim unveränderten täglichen Einsatz eines eingekauften Systems.",
+          "Nur wenn der ursprüngliche Hersteller außerhalb Europas sitzt.",
+          "Wenn sie etwa ein bereits in Verkehr gebrachtes Hochrisiko-KI-System unter eigenem Namen anbietet oder bestimmte wesentliche Änderungen daran vornimmt.",
+          "Bei jedem routinemäßigen Softwareupdate des Herstellers.",
+          "Ausschließlich bei kostenpflichtigem Weiterverkauf."
         ],
         correct: 2,
-        expl: "Art. 25 EU AI Act kann Betreiber schneller zu Anbietern machen, als vielen bewusst ist – etwa durch Fine-Tuning oder White-Labeling. Das verändert die eigenen Pflichten erheblich.",
-        chapter: "Kapitel 17 · Vendor-Risiko und Kapitel 28 · Offene KI-Modelle",
-        source: { label: "Verordnung (EU) 2024/1689, Art. 25 – EUR-Lex", url: "https://eur-lex.europa.eu/legal-content/DE/TXT/?uri=CELEX:32024R1689" }
+        expl: "Artikel 25 des AI Act beschreibt konkrete Fälle, in denen die Anbieterpflichten auf andere Akteure übergehen können: insbesondere bestimmte Umkennzeichnungen, wesentliche Änderungen oder Änderungen der Zweckbestimmung. Das gilt nicht automatisch für jede lokale Konfiguration oder jedes Fine-Tuning; es kommt auf Art und Auswirkungen der Änderung und die gesetzliche Systemkategorie an. Einrichtungen sollten Änderungen deshalb dokumentieren und vorab klären, wer Anbieter- und Betreiberpflichten trägt. Für bestimmte produktbezogene KI-Systeme gelten Sonderregeln.",
+        bookRef: "Teil II – AI Act: Rollen, Anbieter- und Betreiberpflichten; Teil III – Procurement Gate",
+        sources: ["AI Act (EU) 2024/1689, Artikel 25"]
       },
       {
-        cat: "Betrieb & Monitoring",
-        q: "Bei einem Prognosemodell für Krebspatienten sank während der Pandemie der Anteil als hochriskant erkannter Fälle deutlich – obwohl globale Kennzahlen wie Diskrimination und Kalibration akzeptabel blieben. Was zeigt dieser Fall?",
+        n: 4,
+        category: "Klinische Validierung & Fairness",
+        title: "Sepsis – Herstellerangaben im Realitätscheck",
+        q: "Ein verbreitetes KI-Modell zur Sepsis-Erkennung erreichte in einer unabhängigen Studie nur rund 33 % Sensitivität. Was folgt daraus für eine Klinik?",
         opts: [
-          "Dass das Modell grundsätzlich fehlerhaft war",
-          "Dass Modelldrift sich zuerst im Workflow zeigen kann, während aggregierte Kennzahlen unauffällig bleiben",
-          "Dass Pandemien KI-Systeme generell unbrauchbar machen",
-          "Dass externe Validierung überflüssig ist, wenn interne Kennzahlen gut sind"
+          "Herstellerangaben reichen nach der Installation immer aus.",
+          "Solche Systeme sind grundsätzlich ungeeignet.",
+          "Entscheidend ist allein der Kaufpreis pro Fall.",
+          "Eine externe Prüfung ersetzt jede lokale Prozessüberwachung dauerhaft.",
+          "Die Leistung muss für die vorgesehene Patientenpopulation und den realen klinischen Einsatzkontext risikogerecht überprüft werden."
+        ],
+        correct: 4,
+        expl: "Wong und Kollegen untersuchten 38.455 Krankenhausaufenthalte und berichteten für das Epic Sepsis Model eine Sensitivität von etwa 33 % und einen positiven Vorhersagewert von 12 %. Der Fall zeigt, wie stark sich die tatsächliche Leistung eines verbreiteten Modells von erwarteten Ergebnissen unterscheiden kann. Eine standort- und zweckbezogene Bewertung sollte neben Sensitivität und Spezifität auch Alarmhäufigkeit, falsch-negative Fälle, Arbeitsabläufe und mögliche Folgen für Patienten erfassen. Die Studie begründet keine allgemeine Aussage, dass jede Implementierung gleich schlecht funktioniert.",
+        bookRef: "Teil IV – Quality Engineering: externe Validierung und klinische Leistungsfähigkeit",
+        sources: ["Wong et al., JAMA Internal Medicine, 2021"]
+      },
+      {
+        n: 5,
+        category: "Klinische Validierung & Fairness",
+        title: "Bias – wenn Kosten Bedarf ersetzen",
+        q: "Warum wurden in einer US-Studie Menschen aus einer als „Black“ erfassten Patientengruppe bei vergleichbarer Krankheitslast durch einen Versorgungsalgorithmus seltener für Zusatzangebote ausgewählt?",
+        opts: [
+          "Weil ihre Hautfarbe in medizinischen Bildern falsch erkannt wurde.",
+          "Weil der Algorithmus keinerlei Krankenversicherungsdaten verarbeitete.",
+          "Weil die Zielgröße prognostizierte Gesundheitsausgaben statt tatsächlichen medizinischen Versorgungsbedarfs waren.",
+          "Weil alle betreffenden Personen aus der Untersuchung ausgeschlossen waren.",
+          "Weil das System ausschließlich genetische Merkmale verwendete."
+        ],
+        correct: 2,
+        expl: "Obermeyer und Kollegen zeigten, dass bei gleichem Algorithmus-Score schwarze Patienten im untersuchten US-Datensatz eine höhere Krankheitslast hatten als weiße Patienten. Der Algorithmus sagte Gesundheitskosten voraus; historisch ungleiche Versorgungsausgaben waren daher ein ungeeigneter Ersatz für den medizinischen Bedarf. Die Korrektur der Verzerrung hätte den Anteil schwarzer Patienten unter den für zusätzliche Versorgung ausgewählten Personen in der untersuchten Population deutlich erhöht. Für faire KI ist daher die Wahl der Zielgröße ebenso wichtig wie Modellgüte und Datenqualität. Präzisierung: Die Studie untersuchte nach ethnischer Zugehörigkeit erfasste Gruppen und nicht Hautfarbe als eigenständige Messvariable.",
+        bookRef: "Teil IV – Quality Engineering: Bias, Fairness und Zielvariablen",
+        sources: ["Obermeyer et al., Science, 2019"]
+      },
+      {
+        n: 6,
+        category: "Klinische Validierung & Fairness",
+        title: "Röntgen-KI – gute Mittelwerte, ungleiche Fehler",
+        q: "Ein KI-System zur Auswertung von Thoraxröntgenbildern hat gute Gesamtkennzahlen, erkennt Erkrankungen in bestimmten Patientengruppen aber seltener. Welche Prüfung ist für die Freigabe besonders wichtig?",
+        opts: [
+          "Allein die Gesamtgenauigkeit des Systems.",
+          "Die Leistungsbewertung nach klinisch relevanten Subgruppen, einschließlich falsch-negativer Ergebnisse und statistischer Unsicherheit.",
+          "Nur die Bildauflösung der eingesetzten Geräte.",
+          "Ein Vergleich der Marketingunterlagen verschiedener Anbieter.",
+          "Ausschließlich ein Test an besonders einfachen Normalbefunden."
         ],
         correct: 1,
-        expl: "Veränderte Labornutzung in der Pandemie verschob die Eingangsdaten des Modells – und damit die reale Patientenselektion –, ohne dass die üblichen Dashboards Alarm schlugen.",
-        chapter: "Kapitel 26 · Daten- und Modellsteuerung",
-        source: { label: "Parikh et al., PMC, 2022/2023", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9846686/" }
+        expl: "Seyyed-Kalantari und Kollegen analysierten Thoraxröntgen-Klassifikatoren in mehreren großen Datensätzen und beobachteten erhöhte Unterdiagnoseraten in bestimmten historisch unterversorgten Populationen. Gute Gesamtwerte können solche Unterschiede verdecken. Bei Beschaffung und Freigabe sollten daher repräsentative Validierungsdaten sowie Sensitivität, Fehlerraten und Konfidenzintervalle in ausreichend großen, klinisch relevanten Gruppen dokumentiert werden. Das Ziel ist nicht eine unreflektierte Gleichsetzung aller Messwerte, sondern das Erkennen und Begrenzen relevanter Benachteiligungen.",
+        bookRef: "Teil IV – Quality Engineering: Subgruppenvalidierung und Fairness",
+        sources: ["Seyyed-Kalantari et al., Nature Medicine, 2021"]
       },
       {
-        cat: "Regulatorik · Security",
-        q: "Seit wann gilt NIS2 in Deutschland, und wer haftet bei Verstößen persönlich?",
+        n: 7,
+        category: "Halluzinationen & Betrieb",
+        title: "KI-Transkription – erfundene Sätze",
+        q: "Ein Spracherkennungssystem erfindet gelegentlich vollständige Sätze, die im Original nicht gesprochen wurden. Welche Schutzmaßnahme ist bei klinischer Dokumentation besonders wichtig?",
         opts: [
-          "Seit 6.12.2025 – ausschließlich die IT-Abteilung",
-          "Seit 6.12.2025 – Leitungsorgane haften persönlich",
-          "Erst ab 2027 – noch keine Haftung vorgesehen",
-          "NIS2 gilt nur für Kritis-Betreiber ab 10.000 Mitarbeitenden"
+          "Eine hohe durchschnittliche Worterkennungsrate als einziger Nachweis.",
+          "Jedes Transkript ungeprüft als ärztlich autorisiert ablegen.",
+          "Die Ausgangsdaten stets sofort und ausnahmslos löschen.",
+          "Klinisch relevante Aussagen vor Übernahme überprüfen und Korrekturen nachvollziehbar dokumentieren.",
+          "Nur Aufnahmen unter einer Minute zulassen."
         ],
-        correct: 1,
-        expl: "NIS2 ist seit 6.12.2025 in Kraft. Rund 29.500 Unternehmen fallen unter BSI-Aufsicht, Gesundheitsdienstleister eingeschlossen – und Delegation an die IT allein genügt nicht mehr.",
-        chapter: "Kapitel 30 · Cybersecurity für KI-Systeme",
-        source: { label: "BSI-Pressemitteilung zum NIS-2-Umsetzungsgesetz, Dez. 2025", url: "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2025/251205_NIS-2-Umsetzungsgesetz_in_Kraft.html" }
+        correct: 3,
+        expl: "Koenecke und Kollegen beschrieben halluzinierte Phrasen und Sätze im Sprachmodell Whisper. Die Studie ist keine klinische Validierungsstudie; gerade deshalb sollte man ihren Befund nicht als exakte Fehlerrate klinischer Dokumentationslösungen ausgeben. Für Anwendungen in der Versorgung ist das Risiko dennoch unmittelbar verständlich: Erfundenen Aussagen über Diagnosen, Symptome oder Arzneimittel darf keine ungeprüfte Autorität verliehen werden. Erforderlich sind geeignete Prüfung durch verantwortliche Personen, Kennzeichnung, Korrekturwege und ein datenschutzkonformes Konzept zur Nachvollziehbarkeit.",
+        bookRef: "Teil IV – Halluzinationen, Fehlerbilder und Guardrails",
+        sources: ["Koenecke et al., Careless Whisper, ACM FAccT, 2024"]
       },
       {
-        cat: "Wirtschaftlichkeit",
-        q: "Ein KI-Projekt zeigt im Pilot vielversprechende Ergebnisse. Was ist laut Buch der häufigste Denkfehler von Führungsteams an dieser Stelle?",
+        n: 8,
+        category: "Halluzinationen & Betrieb",
+        title: "Model Drift – klinische Wirkung verändert sich",
+        q: "Ein Prognosemodell für Krebspatienten identifiziert während einer Versorgungskrise deutlich weniger Hochrisikofälle, obwohl globale Kennzahlen weitgehend stabil bleiben. Was ist die zentrale Lehre?",
         opts: [
-          "Dass ein Pilot Wirtschaftlichkeit im Regelbetrieb bereits beweist",
-          "Dass Piloten grundsätzlich zu teuer sind",
-          "Dass zu viele Use Cases gleichzeitig getestet werden",
-          "Dass Piloten immer zu lange dauern"
+          "Das Modell war zwingend von Anfang an falsch entwickelt.",
+          "Gesamtkennzahlen sind in jeder Situation nutzlos.",
+          "Alle Modelle müssen bei Krisen ohne Prüfung abgeschaltet werden.",
+          "Gute Diskrimination macht Prozesskennzahlen überflüssig.",
+          "Monitoring muss auch Patientenselektion, Eingabedaten und Veränderungen klinischer Abläufe betrachten."
+        ],
+        correct: 4,
+        expl: "Parikh und Kollegen untersuchten ein zuvor eingesetztes Mortalitätsprognosemodell für Krebspatienten im Verlauf der COVID-19-Pandemie. Der Anteil identifizierter Hochrisikopatienten sank deutlich; verringerte Labornutzung könnte eine Rolle gespielt haben. Kalibration und globale Diskrimination verschlechterten sich nicht im gleichen Maße. Ein wirksames Monitoring betrachtet deshalb nicht nur AUC und Durchschnittsfehler, sondern auch Fallzahlen, Datenverfügbarkeit, Subgruppen und das tatsächliche Ergebnis im klinischen Arbeitsablauf. Für relevante Abweichungen braucht es definierte Eskalations- und Revalidierungsverfahren.",
+        bookRef: "Teil IV – Quality Engineering: kontinuierliches Monitoring und Model Drift",
+        sources: ["Parikh et al., Journal of the American Medical Informatics Association, 2023"]
+      },
+      {
+        n: 9,
+        category: "Halluzinationen & Betrieb",
+        title: "8 % Halluzinationen – was heißt das?",
+        q: "In einem Bericht zu einem medizinischen KI-Assistenten steht lediglich: „Halluzinationsrate 8 %“. Welche zusätzliche Information macht diese Zahl für das Management verwendbar?",
+        opts: [
+          "Eine genauere Aufschlüsselung nach Fehlertyp, klinischer Schwere, Anwendungssituation und wirksamen Kontrollen.",
+          "Nur der Name des zugrunde liegenden Sprachmodells.",
+          "Die Anzahl der Wörter pro Antwort.",
+          "Die Aussage, dass alle Halluzinationen gleich gefährlich sind.",
+          "Ein Vergleich mit der durchschnittlichen Tippfehlerquote der Mitarbeitenden."
         ],
         correct: 0,
-        expl: "Ein Pilot zeigt Potenzial, nicht Wirtschaftlichkeit im Regelbetrieb. Zwischen Modellgüte und ROI liegen Prozessintegration, Akzeptanz, Datenqualität und Governance.",
-        chapter: "Kapitel 3 · Wirtschaftlichkeit (6-Felder-Modell)",
-        source: { label: "MIT NANDA, „The GenAI Divide: State of AI in Business 2025“, Juli 2025", url: "https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf" }
+        expl: "Eine pauschale Rate kann sehr unterschiedliche Fehler bündeln: frei erfundene Aussagen, Auslassungen, fehlerhafte Zuordnungen oder unzutreffende Quellenverweise. Ob ein Fehler die Schreibweise einer unwesentlichen Randnotiz oder eine Arzneimitteldosis betrifft, ist für das Risiko entscheidend. Eine belastbare Bewertung legt daher eine klare Fehlertaxonomie, eine dokumentierte Messmethode, geeignete Testfälle und die Folgen je Anwendung fest. Die hier genannte Quote ist ein didaktisches Beispiel und kein allgemeingültiger Referenzwert. Das NIST AI RMF empfiehlt kontextbezogenes Messen und Steuern von KI-Risiken.",
+        bookRef: "Teil IV – Halluzinationen, Fehlerklassifikation und Risikomessung",
+        sources: ["NIST AI Risk Management Framework 1.0, 2023 – Measure und Manage"]
       },
       {
-        cat: "Bias & Fehlerbilder",
-        q: "Eine Studie zu Röntgenbild-KI fand, dass Modelle kranke Patienten bestimmter Gruppen überdurchschnittlich oft als gesund einstuften – obwohl die Gesamtgenauigkeit gut aussah. Was folgt daraus für die Beschaffung?",
+        n: 10,
+        category: "Governance & Sicherheit",
+        title: "NIS2 – Verantwortung der Leitung",
+        q: "Welche Aussage beschreibt die Leitungsverantwortung nach der deutschen NIS2-Umsetzung am zutreffendsten?",
         opts: [
-          "Eine hohe Gesamtgenauigkeit reicht als Freigabekriterium aus",
-          "Subgruppen-Performance muss verbindlicher Bestandteil jeder Freigabe- und Beschaffungsunterlage sein",
-          "Röntgenbild-KI sollte grundsätzlich nicht eingesetzt werden",
-          "Das Problem betrifft nur öffentlich verfügbare Datensätze"
+          "Cybersicherheit ist nach der Delegation ausschließlich Sache der IT-Abteilung.",
+          "NIS2 betrifft nur Betriebe mit über 10.000 Beschäftigten.",
+          "Das deutsche Umsetzungsgesetz gilt erst ab 2028.",
+          "Leitungsorgane bestimmter erfasster Einrichtungen müssen Risikomanagementmaßnahmen billigen und ihre Umsetzung überwachen; gesetzliche Haftungsregeln sind zu beachten.",
+          "NIS2 ersetzt die besonderen Anforderungen an Medizinprodukte."
         ],
-        correct: 1,
-        expl: "Eine Gesamtgenauigkeit ist keine Sicherheitsaussage. Der Durchschnitt kann genau die Fälle verdecken, in denen ein übersehener Befund am teuersten ist.",
-        chapter: "Kapitel 19 · Robustheit und Subgruppen",
-        source: { label: "Seyyed-Kalantari et al., Nature Medicine, 2021", url: "https://doi.org/10.1038/s41591-021-01595-0" }
+        correct: 3,
+        expl: "Das deutsche NIS2-Umsetzungsgesetz trat am 6. Dezember 2025 in Kraft. Das BSI-Gesetz verpflichtet Leitungsorgane erfasster Einrichtungen unter anderem zur Billigung und Überwachung von Risikomanagementmaßnahmen. Verantwortlichkeiten dürfen organisatorisch verteilt werden, die gesetzlichen Leitungsaufgaben verschwinden dadurch nicht. Eine pauschale Aussage, jedes einzelne Leitungsmitglied hafte persönlich für jeden Cybervorfall, wäre jedoch falsch: Haftung hängt von den gesetzlichen Voraussetzungen und dem jeweiligen Sachverhalt ab. Für den Quick Check zählt, dass KI-Sicherheit in das gesamte Informationssicherheits- und Risikomanagement eingebettet gehört.",
+        bookRef: "Teil II – NIS2, Cybersecurity und Managementverantwortung",
+        sources: ["BSI-Gesetz (BSIG), geltende Fassung; insbesondere Leitungsorgane und Risikomanagement"]
       },
       {
-        cat: "Governance",
-        q: "Ein FDA-Warnschreiben 2026 rügte erstmals ausdrücklich den unkontrollierten Einsatz von KI-Agenten in der Arzneimittelherstellung. Was war der Kern der Beanstandung?",
+        n: 11,
+        category: "Governance & Sicherheit",
+        title: "FDA – KI ersetzt keine Qualitätsfreigabe",
+        q: "Was beanstandete die FDA in einem Warnschreiben vom April 2026 beim Einsatz von KI-Agenten in der Arzneimittelherstellung?",
         opts: [
-          "Die KI-Agenten selbst waren technisch fehlerhaft programmiert",
-          "KI-generierte Dokumente wurden nicht durch eine autorisierte menschliche Qualitätseinheit geprüft und freigegeben",
-          "Der Einsatz von KI in der Pharmaproduktion ist grundsätzlich untersagt",
-          "Es fehlte eine Lizenz für die verwendete KI-Software"
+          "Die bloße Verwendung generativer KI in einem Unternehmen.",
+          "KI-generierte Verfahrensdokumente und Empfehlungen wurden nicht ausreichend auf Richtigkeit und CGMP-Konformität geprüft bzw. von der zuständigen Qualitätseinheit kontrolliert.",
+          "Dass KI ausschließlich mit englischen Dokumenten trainiert wurde.",
+          "Dass alle KI-Systeme in der Pharmaproduktion generell untersagt sind.",
+          "Dass die KI-Software keine europäische CE-Kennzeichnung hatte."
         ],
         correct: 1,
-        expl: "Die FDA stellte klar: KI-Ausgaben müssen von qualifizierten Menschen geprüft und freigegeben werden. „Die KI hat mich nicht darauf hingewiesen“ ist kein Qualitätsmanagement.",
-        chapter: "Kapitel 21 · Human Oversight",
-        source: { label: "FDA Warning Letter 722591, 2.4.2026", url: "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/purolea-cosmetics-lab-722591-04022026" }
+        expl: "Im Warnschreiben an Purolea Cosmetics Lab vom 2. April 2026 beschrieb die FDA einen konkreten Fall von Übervertrauen in KI-Agenten. Das Unternehmen hatte KI zur Erstellung von Produktspezifikationen, Verfahren und Herstellungsdokumenten verwendet, ohne die Ergebnisse angemessen auf regulatorische Korrektheit zu prüfen. Auf den Hinweis zu fehlender Prozessvalidierung erklärte das Unternehmen, der KI-Agent habe es nicht auf die Anforderung hingewiesen. Die FDA verlangte für künftige CGMP-Aktivitäten eine Prüfung und Freigabe von KI-Empfehlungen durch eine autorisierte menschliche Vertretung der Qualitätseinheit. Es handelt sich um einen konkreten US-Fall, nicht um eine unmittelbar übertragbare EU-Rechtsnorm.",
+        bookRef: "Teil III – Human Oversight und Verantwortlichkeiten; Teil IV – Qualitätsmanagement",
+        sources: ["FDA Warning Letter, Purolea Cosmetics Lab, Nr. 722591, 2. April 2026"]
+      },
+      {
+        n: 12,
+        category: "Wirtschaftlichkeit & Umsetzung",
+        title: "Vom Pilot zum Regelbetrieb",
+        q: "Ein KI-Pilot liefert im Test sehr gute Resultate. Welche Schlussfolgerung darf die Geschäftsführung daraus noch nicht ziehen?",
+        opts: [
+          "Dass ein praktischer Einsatz technisch möglich erscheint.",
+          "Dass die Lösung unter den Testbedingungen relevant sein könnte.",
+          "Dass sich Messgrößen für eine spätere Bewertung definieren lassen.",
+          "Dass Mitarbeitende gezielt befragt werden sollten.",
+          "Dass die Wirtschaftlichkeit und der Nutzen im gesamten Regelbetrieb damit bereits nachgewiesen sind."
+        ],
+        correct: 4,
+        expl: "Ein erfolgreicher Pilot beweist zunächst nur einen Nutzen unter seinen konkreten Testbedingungen. Ein belastbarer Business Case muss zusätzlich die realen Prozessänderungen, die Übertragbarkeit, Folgekosten, Qualitäts- und Sicherheitsanforderungen sowie die tatsächliche Nutzung im Alltag erfassen. Dabei sollten klinische Wirkung und wirtschaftlicher Effekt getrennt gemessen werden; Zeitersparnis führt beispielsweise nicht automatisch zu realisierten Einsparungen. Für den Quick Check wird bewusst keine pauschale „95 % aller KI-Piloten scheitern“-Quote verwendet, da sich solche Aussagen stark auf Definition und Auswahl der untersuchten Projekte beziehen. Das NIST AI RMF unterstützt die fortlaufende Betrachtung des Anwendungskontexts und der Wirkung.",
+        bookRef: "Teil V – Wirtschaftlichkeit, Pilotierung und Skalierung",
+        sources: ["NIST AI Risk Management Framework 1.0 – Map, Measure und Manage"]
+      },
+      {
+        n: 13,
+        category: "Wirtschaftlichkeit & Umsetzung",
+        title: "Total Cost of Ownership",
+        q: "Welche Kosten müssen in einer seriösen Gesamtwirtschaftlichkeitsrechnung für klinische KI neben der Lizenz berücksichtigt werden?",
+        opts: [
+          "Nur ein einmaliger Zuschlag von 5 % für die IT.",
+          "Ausschließlich die Hardware bei der Erstinstallation.",
+          "Integration, Datenaufbereitung, Validierung, Schulung, menschliche Aufsicht, Monitoring, Vorfälle und spätere Änderungen.",
+          "Kosten für regulatorische Nachweise sind grundsätzlich null.",
+          "Nur die Vertragsstrafe bei vorzeitiger Kündigung."
+        ],
+        correct: 2,
+        expl: "Die Lizenz ist nur ein Teil der Gesamtbetriebskosten und keineswegs in jeder Anwendung der kleinste Posten. Relevant sind Integrations- und Anpassungsaufwand, Datenverfügbarkeit, klinische Validierung, Schulung und Akzeptanz, Betrieb, Monitoring, Auditierbarkeit, mögliche Fehlalarme, menschliche Nachbearbeitung sowie technische und regulatorische Änderungen. Die Höhe der Kosten hängt stark vom Einsatzfall, vorhandenen Systemen und Beschaffungsmodell ab. Empfehlenswert sind deshalb ein transparentes TCO-Modell, klare Nutzenannahmen und eine Überprüfung nach dem Rollout. Das NIST AI RMF liefert dafür einen Rahmen zur Betrachtung des vollständigen KI-Lebenszyklus, allerdings keine universelle TCO-Formel.",
+        bookRef: "Teil V – Wirtschaftlichkeit und Total Cost of Ownership; Teil III – Procurement Gate",
+        sources: ["NIST AI Risk Management Framework 1.0 – KI-Lebenszyklus und Governance"]
+      },
+      {
+        n: 14,
+        category: "Governance & Sicherheit",
+        title: "Schatten-KI – kennen wir alle Anwendungen?",
+        q: "In einer Klinik verwenden Mitarbeitende eigenständig frei zugängliche KI-Assistenten für medizinische Texte. Was ist der wichtigste erste Schritt einer verantwortlichen KI-Governance?",
+        opts: [
+          "Alle Systeme ohne Bestandsaufnahme pauschal freigeben.",
+          "Nur die zentrale IT nach bestehenden KI-Verträgen fragen.",
+          "Abwarten, bis der erste dokumentierte Schaden entsteht.",
+          "Die genutzten KI-Anwendungen einschließlich Schatten-KI systematisch erfassen, nach Zweck und Risiko beurteilen und klare Freigabewege festlegen.",
+          "Ausschließlich ein allgemeines Informationsblatt zum Datenschutz versenden."
+        ],
+        correct: 3,
+        expl: "Ein wirksames KI-Register sollte nicht nur offiziell beschaffte Medizinprodukte umfassen. Auch KI-Funktionen in vorhandener Software, Dokumentationshilfen, Übersetzungsdienste und selbstständig verwendete generative KI können relevant sein. Ohne Inventar fehlen die Grundlage für Risikoklassifizierung, Datenschutzprüfung, Verantwortlichkeiten und Monitoring. Erfassung sollte deshalb niedrigschwellig, nicht rein sanktionierend und mit praktikablen Freigabeprozessen verbunden sein. Das NIST AI RMF beschreibt das Kontext-Mapping und die Governance als zentrale Bestandteile des Risikomanagements; die konkrete Registerpflicht richtet sich hingegen nach den jeweils geltenden Vorschriften.",
+        bookRef: "Teil III – KI-Register, Procurement Gate und Freigabeworkflow",
+        sources: ["NIST AI RMF Playbook – Govern und Map"]
+      },
+      {
+        n: 15,
+        category: "Governance & Sicherheit",
+        title: "KI-Vorfall – wer reagiert?",
+        q: "Ein freigegebener KI-Assistent gibt wiederholt potenziell gefährliche Therapieempfehlungen aus. Was ist organisatorisch die angemessene Reaktion?",
+        opts: [
+          "Zunächst ausschließlich den Anbieter über den Vertrieb kontaktieren.",
+          "Das System unverändert weiterlaufen lassen, bis der nächste Jahresbericht vorliegt.",
+          "Nur die betreffende Prompt-Vorlage umbenennen.",
+          "Die Fälle löschen, um Fehlalarme in der Statistik zu vermeiden.",
+          "Den Vorfall gemäß festgelegtem Verfahren erfassen, klinisches Risiko und Sofortmaßnahmen bewerten, Zuständigkeiten aktivieren und erforderliche Meldungen prüfen."
+        ],
+        correct: 4,
+        expl: "Health AI Assurance endet nicht mit der Freigabe. Eine Organisation benötigt definierte Meldewege, Verantwortung für klinische Risikoentscheidungen, Möglichkeiten zum Pausieren oder Einschränken eines Systems, eine nachvollziehbare Untersuchung und Kriterien zur Wiederfreigabe. Abhängig vom System und der konkreten Situation können zudem Meldepflichten aus Medizinprodukterecht, AI Act, Datenschutz oder anderen Vorschriften greifen; diese sind im Einzelfall zu prüfen. NIST beschreibt das kontinuierliche Management identifizierter Risiken als Kernaufgabe. Entscheidend ist, dass Mitarbeitende Vorfälle tatsächlich melden können und aus ihnen nachweisbare Verbesserungen entstehen.",
+        bookRef: "Teil III – Incident Management und Notfallplan; Teil IV – Monitoring und Verbesserung",
+        sources: ["NIST AI RMF 1.0 – Manage und Govern", "AI Act (EU) 2024/1689 – relevante Pflichten und Vorfallregeln"]
       }
     ];
 
     var current = 0;
     var answers = []; // {selected, correct}
+
+    function esc(s) {
+      return String(s).replace(/[&<>"]/g, function (c) {
+        return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+      });
+    }
+
+    function renderSources(sources) {
+      var label = sources.length > 1 ? "Quellen: " : "Quelle: ";
+      return label + sources.map(esc).join("; ");
+    }
+
+    function renderBookRef(bookRef) {
+      return "Buchverweis (vorläufig): " + esc(bookRef);
+    }
 
     function startQuiz() {
       current = 0;
@@ -864,12 +1074,12 @@
 
     function renderQuestion() {
       var item = QUESTIONS[current];
-      document.getElementById("qcat").textContent = item.cat;
+      document.getElementById("qcat").textContent = item.category + " · " + item.title;
       document.getElementById("qtext").textContent = item.q;
       document.getElementById("qfeedback").innerHTML = "";
       document.getElementById("qnav").style.display = "none";
 
-      var lettersArr = ["A", "B", "C", "D"];
+      var lettersArr = ["A", "B", "C", "D", "E"];
       var optsHtml = "";
       item.opts.forEach(function (opt, i) {
         optsHtml += '<button class="opt" data-idx="' + i + '" onclick="selectAnswer(' + i + ')">'
@@ -903,7 +1113,7 @@
 
       var fb = document.getElementById("qfeedback");
       var nudges = [
-        "Genau dieser Punkt wird im Buch vertieft ausgeführt.",
+        "Genau dieser Punkt wird im entstehenden Buch vertieft ausgeführt.",
         "Im Buch finden Sie dazu die vollständige Herleitung.",
         "Das Buch geht hier deutlich tiefer als diese Kurzantwort.",
         "Für die Praxis liefert das Buch dazu ein konkretes Werkzeug."
@@ -914,8 +1124,8 @@
       fb.innerHTML = '<div class="feedback ' + (isCorrect ? 'right' : 'wrong') + '">'
         + '<div class="fl">' + (isCorrect ? '✓ Richtig' : '✕ Nicht ganz') + '</div>'
         + '<p>' + item.expl + '</p>'
-        + '<span class="chap">→ ' + item.chapter + '</span>'
-        + '<span class="src">Quelle: <a href="' + item.source.url + '" target="_blank" rel="noopener">' + item.source.label + '</a></span>'
+        + '<span class="book-ref">' + renderBookRef(item.bookRef) + '</span>'
+        + '<span class="src">' + renderSources(item.sources) + '</span>'
         + nudgeHtml
         + '</div>';
 
@@ -939,6 +1149,42 @@
       return { cls: "red", label: "Auffrischung empfohlen" };
     }
 
+    function renderCategoryBreakdown() {
+      var stats = {};
+      CATEGORIES.forEach(function (c) { stats[c] = { correct: 0, total: 0 }; });
+      QUESTIONS.forEach(function (item, i) {
+        var a = answers[i];
+        stats[item.category].total++;
+        if (a && a.correct) stats[item.category].correct++;
+      });
+
+      var ratios = CATEGORIES.map(function (c) {
+        var s = stats[c];
+        return { cat: c, correct: s.correct, total: s.total, pct: s.total ? Math.round((100 * s.correct) / s.total) : 0 };
+      });
+
+      var pcts = ratios.map(function (r) { return r.pct; });
+      var maxPct = Math.max.apply(null, pcts);
+      var minPct = Math.min.apply(null, pcts);
+
+      var insightHtml;
+      if (maxPct === minPct) {
+        insightHtml = "Sie liegen in allen Themenblöcken auf einem vergleichbaren Niveau.";
+      } else {
+        var strongest = ratios.filter(function (r) { return r.pct === maxPct; })[0];
+        var weakest = ratios.filter(function (r) { return r.pct === minPct; })[0];
+        insightHtml = "Ihr stärkster Bereich: <strong>" + esc(strongest.cat) + "</strong> — Nachholbedarf sehen wir bei: <strong>" + esc(weakest.cat) + "</strong>.";
+      }
+      document.getElementById("catInsight").innerHTML = insightHtml;
+
+      document.getElementById("categoryBreakdown").innerHTML = ratios.map(function (r) {
+        return '<div class="cat-row">'
+          + '<div class="cat-row-top"><span class="cat-name">' + esc(r.cat) + '</span><span class="cat-frac">' + r.correct + '/' + r.total + '</span></div>'
+          + '<div class="cat-track"><div class="cat-fill" style="width:' + r.pct + '%"></div></div>'
+          + '</div>';
+      }).join('');
+    }
+
     function showResult() {
       var correctCount = answers.filter(function (a) { return a.correct; }).length;
       var pct = Math.round((correctCount / QUESTIONS.length) * 100);
@@ -952,13 +1198,15 @@
       badge.className = "verdict-badge c-" + v.cls;
 
       var texts = {
-        green: "Sie kennen die Fallstricke gut – von Art. 50 bis Human Oversight. Für die verbleibenden Lücken lohnt ein gezielter Blick in die unten verlinkten Kapitel.",
+        green: "Sie kennen die Fallstricke gut – von den EU-AI-Act-Fristen bis zum Incident Management. Für die verbleibenden Lücken lohnt ein gezielter Blick in die unten verlinkten Kapitel.",
         amber: "Eine solide Grundlage mit erkennbaren Lücken bei einzelnen Themen. Die Kapitelverweise unten zeigen genau, wo sich die Vertiefung am meisten lohnt.",
         red: "Ein guter Anlass, tiefer einzusteigen: Die unten verlinkten Kapitel bauen genau die Punkte aus, die hier noch offen waren."
       };
       document.getElementById("verdictText").textContent = texts[v.cls];
       document.getElementById("resultMeta").textContent =
         correctCount + " von " + QUESTIONS.length + " Fragen richtig · " + new Date().toLocaleDateString("de-DE", { day: "numeric", month: "long", year: "numeric" });
+
+      renderCategoryBreakdown();
 
       var html = "";
       QUESTIONS.forEach(function (item, i) {
@@ -967,8 +1215,8 @@
         html += '<div class="rev-item ' + (ok ? 'ok' : 'no') + '">'
           + '<div class="rev-top"><span class="rev-icon">' + (ok ? '✓' : '✕') + '</span><span class="rev-q">' + item.q + '</span></div>'
           + '<p>' + item.expl + '</p>'
-          + '<span class="chap">→ ' + item.chapter + '</span>'
-          + '<span class="src">Quelle: <a href="' + item.source.url + '" target="_blank" rel="noopener">' + item.source.label + '</a></span>'
+          + '<span class="book-ref">' + renderBookRef(item.bookRef) + '</span>'
+          + '<span class="src">' + renderSources(item.sources) + '</span>'
           + '</div>';
       });
       document.getElementById("reviewList").innerHTML = html;

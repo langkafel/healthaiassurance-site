@@ -1,0 +1,32 @@
+{
+  "desktop": {
+    "optionsRenderedOnFirstQuestion": 5,
+    "questionsAnswered": 15,
+    "resultMeta": "1 von 15 Fragen richtig · 23. September 2026",
+    "catInsight": "Ihr stärkster Bereich: Halluzinationen & Betrieb — Nachholbedarf sehen wir bei: Regulatorik & Verantwortung.",
+    "catRows": 5,
+    "catRowTexts": [
+      "Regulatorik & Verantwortung0/3",
+      "Klinische Validierung & Fairness0/3",
+      "Halluzinationen & Betrieb1/3",
+      "Governance & Sicherheit0/4",
+      "Wirtschaftlichkeit & Umsetzung0/2"
+    ],
+    "consoleErrors": []
+  },
+  "mobile": {
+    "optionsRenderedOnFirstQuestion": 5,
+    "questionsAnswered": 15,
+    "resultMeta": "1 von 15 Fragen richtig · 23. September 2026",
+    "catInsight": "Ihr stärkster Bereich: Halluzinationen & Betrieb — Nachholbedarf sehen wir bei: Regulatorik & Verantwortung.",
+    "catRows": 5,
+    "catRowTexts": [
+      "Regulatorik & Verantwortung0/3",
+      "Klinische Validierung & Fairness0/3",
+      "Halluzinationen & Betrieb1/3",
+      "Governance & Sicherheit0/4",
+      "Wirtschaftlichkeit & Umsetzung0/2"
+    ],
+    "consoleErrors": []
+  }
+}
