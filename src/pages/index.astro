@@ -56,15 +56,19 @@ const resources = [
     <div class="container">
       <p class="eyebrow">AI Governance for Healthcare</p>
       <h1>KI im Gesundheitswesen einsetzen. Verantwortung nachweisbar machen.</h1>
-      <p class="hero-audience">Für Kliniken, Klinikverbünde, Health-IT- und MedTech-Hersteller.</p>
+      <p class="hero-audience">
+        Für Kliniken, Krankenkassen, Pharma- und MedTech-Unternehmen, Health-IT-Anbieter und öffentliche
+        Gesundheitseinrichtungen.
+      </p>
       <p class="lead">
-        Health AI Assurance macht sichtbar, welche KI-Systeme Sie einsetzen und welche Pflichten dafür gelten
-        — und liefert ein wiederholbares Verfahren, um Risiken zu erkennen, Verantwortlichkeiten zu klären und
-        Maßnahmen nachweisbar umzusetzen.
+        Health AI Assurance unterstützt Sie dabei, KI im Gesundheitswesen verantwortungsvoll einzuführen und
+        ihr Potenzial zu nutzen. Welche KI-Systeme sind bei Ihnen im Einsatz? Welche regulatorischen
+        Anforderungen gelten? Und wie stellen Sie sicher, dass Risiken erkannt, Verantwortlichkeiten geklärt
+        und Maßnahmen umgesetzt werden?
       </p>
       <CtaButtons
         primary={{ label: 'Erstgespräch vereinbaren', href: 'mailto:info@peter-langkafel.de' }}
-        secondary={{ label: 'Wissenscheck starten', href: '/quick-check' }}
+        secondary={{ label: 'Quick Check starten', href: '/quick-check' }}
       />
     </div>
   </section>
@@ -73,12 +77,16 @@ const resources = [
     <div class="container">
       <div class="card author-card">
         <div class="author-row">
-          <div class="author-avatar" aria-hidden="true">PL</div>
+          <img class="author-avatar" src="/img/peter-langkafel.webp" alt="Prof. Dr. med. Peter Langkafel, MBA" width="64" height="64" />
           <div class="author-info">
             <p class="author-name">Prof. Dr. med. Peter Langkafel, MBA</p>
             <p class="author-role">
               Arzt, Professor für Digital Health und Gründer — entwickelt Health AI Assurance aus über 20
               Jahren Erfahrung an der Schnittstelle von Medizin, Technologie und Governance.
+            </p>
+            <p class="author-quote">
+              „Ich beschäftige mich seit über 20 Jahren mit der Schnittstelle von Medizin, Technologie und
+              Verantwortung im Gesundheitswesen."
             </p>
             <div class="badge-row author-badges">
               {authorCredentials.map((credential) => <Badge>{credential}</Badge>)}
@@ -101,6 +109,10 @@ const resources = [
   <section class="section section-alt">
     <div class="container">
       <h2>Der Prozess</h2>
+      <p class="section-intro">
+        Health AI Assurance begleitet Sie durch vier Schritte — vom ersten Überblick bis zur laufenden
+        Überwachung:
+      </p>
       <div class="process">
         {
           processSteps.map((step) => (
@@ -118,6 +130,10 @@ const resources = [
   <section class="section">
     <div class="container">
       <h2>So sieht Governance im Alltag aus</h2>
+      <p class="section-intro">
+        So könnte Ihr KI-Register in der Health-AI-Assurance-Plattform aussehen — ein zentraler Überblick über
+        eingesetzte Systeme, offene Prüfungen und Maßnahmen.
+      </p>
       <div class="dashboard-mock" role="img" aria-label="Beispielhaftes KI-Register mit Bearbeitungsstatus, Verantwortlichkeiten und offenen Maßnahmen">
         <div class="dashboard-mock-header">
           <span>KI-Register</span>
@@ -249,13 +265,6 @@ const resources = [
     border-radius: var(--radius-full);
     background: var(--color-card-alt);
     border: 1px solid var(--color-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: var(--color-text-muted);
     object-fit: cover;
   }
 
@@ -279,6 +288,16 @@ const resources = [
     margin-bottom: 18px;
   }
 
+  .author-quote {
+    font-style: italic;
+    color: var(--color-text);
+    font-size: 0.98rem;
+    max-width: 60ch;
+    margin-bottom: 18px;
+    padding-left: 14px;
+    border-left: 2px solid var(--color-border);
+  }
+
   .author-badges {
     margin-bottom: 18px;
   }
@@ -294,6 +313,12 @@ const resources = [
 
   .author-link:hover {
     color: var(--color-accent);
+  }
+
+  .section-intro {
+    max-width: 60ch;
+    font-size: 1rem;
+    margin-bottom: 1.75em;
   }
 
   .dashboard-mock {
