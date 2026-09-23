@@ -8,7 +8,7 @@ const { src, title } = Astro.props;
 ---
 
 <div class="embed-frame">
-  <iframe src={src} title={title} loading="lazy"></iframe>
+  <iframe src={src} title={title} loading="lazy" scrolling="no"></iframe>
 </div>
 
 <style>
@@ -16,14 +16,41 @@ const { src, title } = Astro.props;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-card);
     overflow: hidden;
+    /* Fallback only, used until the embedded page reports its real height
+       via postMessage (see script below) — prevents an empty/collapsed
+       box on first paint, not meant to be the steady-state height. */
     height: min(1400px, calc(100vh - 220px));
     min-height: 640px;
+    transition: height 0.2s ease;
   }
 
   .embed-frame iframe {
     width: 100%;
     height: 100%;
     border: 0;
+    overflow: hidden;
     background: var(--color-bg);
   }
 </style>
+
+<script>
+  // Embedded pages (see public/embeds/) report their content height via
+  // postMessage so the iframe can grow/shrink to fit instead of scrolling
+  // internally. Matched by event.source so multiple embeds on a page (or
+  // unrelated postMessage traffic) can't set the wrong frame's height.
+  const HEIGHT_BUFFER = 20;
+  const MIN_HEIGHT = 320;
+
+  window.addEventListener('message', (event) => {
+    if (!event.data || event.data.type !== 'haa-atlas-height') return;
+
+    const frames = document.querySelectorAll<HTMLIFrameElement>('.embed-frame iframe');
+    frames.forEach((frame) => {
+      if (frame.contentWindow !== event.source) return;
+      const reported = Number(event.data.height) || 0;
+      const height = Math.max(MIN_HEIGHT, reported + HEIGHT_BUFFER);
+      const wrapper = frame.closest<HTMLElement>('.embed-frame');
+      if (wrapper) wrapper.style.height = `${height}px`;
+    });
+  });
+</script>
