@@ -123,12 +123,17 @@
   </div>
 </div>
 
-<style is:global>
-  /* Global (not Astro-scoped): most of this component's markup (answer
-     buttons, feedback, review list, category bars) is injected via
-     innerHTML at runtime, which never receives Astro's scoping
-     data-attribute -- scoped styles silently wouldn't apply to any of it.
-     The .quickcheck wrapper class already provides the namespacing. */
+<style>
+  /* Scoped (Astro default): every selector below only ever matches
+     elements that are present in this component's static template --
+     the wrapper div, screen sections, buttons, static labels/containers.
+     Elements injected later via innerHTML (answer buttons, feedback,
+     review list, category bars) never receive Astro's scoping
+     data-attribute, so their styling lives in the separate is:global
+     block further down -- keeping this block scoped means it can't leak
+     onto other pages even in principle, not just via the .quickcheck
+     class namespace. CSS custom properties defined here still cascade
+     to the dynamically-injected descendants regardless of scoping. */
   .quickcheck {
     --bg-page: var(--color-bg);
     --bg-card: var(--color-card);
@@ -144,12 +149,6 @@
     --text: var(--color-text);
     --muted: var(--color-text-muted);
     --footer: var(--color-text-footer);
-  }
-
-  .quickcheck * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
   }
 
   .quickcheck .wrap {
@@ -317,6 +316,228 @@
     gap: 7px;
   }
 
+  .quickcheck .qnav {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 18px;
+  }
+
+  .quickcheck .score-hero {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 30px 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 26px;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+
+  .quickcheck .score-circle {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 6px solid var(--cyan);
+  }
+
+  .quickcheck .score-circle .pct {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .quickcheck .score-circle .of {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .quickcheck .score-verdict {
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .quickcheck .verdict-badge {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 4px 11px;
+    margin-bottom: 11px;
+  }
+
+  .quickcheck .score-verdict p {
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+
+  .quickcheck .c-green {
+    color: var(--green);
+    border-color: var(--green);
+  }
+
+  .quickcheck .c-amber {
+    color: var(--amber);
+    border-color: var(--amber);
+  }
+
+  .quickcheck .c-red {
+    color: var(--red);
+    border-color: var(--red);
+  }
+
+  .quickcheck .category-section {
+    margin-bottom: 26px;
+  }
+
+  .quickcheck .category-section h2 {
+    font-size: 17px;
+    margin-bottom: 10px;
+  }
+
+  .quickcheck .cat-insight {
+    color: var(--text);
+    font-size: 13.5px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .quickcheck .category-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .quickcheck .review {
+    margin-bottom: 26px;
+  }
+
+  .quickcheck .review h2 {
+    font-size: 17px;
+    margin-bottom: 12px;
+  }
+
+  .quickcheck .result-cta {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 26px 26px;
+    margin-bottom: 24px;
+  }
+
+  .quickcheck .result-cta blockquote {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  .quickcheck .result-cta blockquote span {
+    color: var(--cyan);
+  }
+
+  .quickcheck .result-cta p {
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+
+  .quickcheck .cta-hint {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--footer);
+  }
+
+  .quickcheck .primary-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .quickcheck .result-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .quickcheck-disclaimer {
+    border-top: 1px solid var(--color-border);
+    margin-top: 20px;
+    padding-top: 26px;
+    padding-bottom: 44px;
+  }
+
+  .quickcheck-disclaimer p {
+    color: var(--color-text-footer);
+    font-size: 12.5px;
+  }
+
+  @media print {
+    .quickcheck .no-print {
+      display: none !important;
+    }
+    .quickcheck .screen {
+      display: none;
+    }
+    .quickcheck #screen-result {
+      display: block;
+      padding: 0;
+    }
+    .quickcheck .score-hero,
+    .quickcheck .result-cta {
+      background: #fff;
+      border-color: #ccc;
+      color: #111;
+    }
+    .quickcheck .score-verdict p,
+    .quickcheck .result-cta p {
+      color: #333;
+    }
+    .quickcheck .score-circle {
+      border-color: #888;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .quickcheck .score-hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .quickcheck .progress-wrap {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+<style is:global>
+  /* Global (not Astro-scoped) on purpose: this styles only the markup
+     that's injected via innerHTML at runtime (answer buttons, letter
+     badges, feedback, review list, category bars) -- those elements
+     never receive Astro's scoping data-attribute, so scoped rules would
+     silently never match them. Every selector is still prefixed with
+     .quickcheck, which only exists on this component's wrapper div, so
+     none of this can affect any other page despite being global. */
+  .quickcheck * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
   .quickcheck .opt {
     display: flex;
     align-items: center;
@@ -463,109 +684,6 @@
     white-space: nowrap;
   }
 
-  .quickcheck .qnav {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 18px;
-  }
-
-  .quickcheck .score-hero {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 30px 28px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 26px;
-    align-items: center;
-    margin-bottom: 26px;
-  }
-
-  .quickcheck .score-circle {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 6px solid var(--cyan);
-  }
-
-  .quickcheck .score-circle .pct {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-    line-height: 1;
-  }
-
-  .quickcheck .score-circle .of {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
-
-  .quickcheck .score-verdict {
-    flex: 1;
-    min-width: 220px;
-  }
-
-  .quickcheck .verdict-badge {
-    display: inline-block;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 11.5px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    border: 1px solid;
-    border-radius: 4px;
-    padding: 4px 11px;
-    margin-bottom: 11px;
-  }
-
-  .quickcheck .score-verdict p {
-    color: var(--muted);
-    font-size: 14.5px;
-  }
-
-  .quickcheck .c-green {
-    color: var(--green);
-    border-color: var(--green);
-  }
-
-  .quickcheck .c-amber {
-    color: var(--amber);
-    border-color: var(--amber);
-  }
-
-  .quickcheck .c-red {
-    color: var(--red);
-    border-color: var(--red);
-  }
-
-  .quickcheck .category-section {
-    margin-bottom: 26px;
-  }
-
-  .quickcheck .category-section h2 {
-    font-size: 17px;
-    margin-bottom: 10px;
-  }
-
-  .quickcheck .cat-insight {
-    color: var(--text);
-    font-size: 13.5px;
-    line-height: 1.6;
-    margin-bottom: 16px;
-  }
-
-  .quickcheck .category-breakdown {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
   .quickcheck .cat-row-top {
     display: flex;
     justify-content: space-between;
@@ -597,15 +715,6 @@
     height: 100%;
     background: var(--cyan);
     border-radius: 99px;
-  }
-
-  .quickcheck .review {
-    margin-bottom: 26px;
-  }
-
-  .quickcheck .review h2 {
-    font-size: 17px;
-    margin-bottom: 12px;
   }
 
   .quickcheck .rev-item {
@@ -673,100 +782,14 @@
     margin-left: 28px;
   }
 
-  .quickcheck .result-cta {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 26px 26px;
-    margin-bottom: 24px;
-  }
-
-  .quickcheck .result-cta blockquote {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    font-size: 17px;
-    line-height: 1.45;
-    margin-bottom: 10px;
-  }
-
-  .quickcheck .result-cta blockquote span {
-    color: var(--cyan);
-  }
-
-  .quickcheck .result-cta p {
-    color: var(--muted);
-    font-size: 14.5px;
-  }
-
-  .quickcheck .cta-hint {
-    margin-top: 14px;
-    font-size: 12px;
-    color: var(--footer);
-  }
-
-  .quickcheck .primary-ctas {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 8px;
-  }
-
-  .quickcheck .result-btns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px dashed var(--border);
-  }
-
-  .quickcheck-disclaimer {
-    border-top: 1px solid var(--color-border);
-    margin-top: 20px;
-    padding-top: 26px;
-    padding-bottom: 44px;
-  }
-
-  .quickcheck-disclaimer p {
-    color: var(--color-text-footer);
-    font-size: 12.5px;
-  }
-
   @media print {
-    .quickcheck .no-print {
-      display: none !important;
-    }
-    .quickcheck .screen {
-      display: none;
-    }
-    .quickcheck #screen-result {
-      display: block;
-      padding: 0;
-    }
-    .quickcheck .score-hero,
-    .quickcheck .rev-item,
-    .quickcheck .result-cta {
+    .quickcheck .rev-item {
       background: #fff;
       border-color: #ccc;
       color: #111;
     }
-    .quickcheck .score-verdict p,
-    .quickcheck .rev-item p,
-    .quickcheck .result-cta p {
+    .quickcheck .rev-item p {
       color: #333;
-    }
-    .quickcheck .score-circle {
-      border-color: #888;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .quickcheck .score-hero {
-      flex-direction: column;
-      text-align: center;
-    }
-    .quickcheck .progress-wrap {
-      flex-wrap: wrap;
     }
   }
 </style>
