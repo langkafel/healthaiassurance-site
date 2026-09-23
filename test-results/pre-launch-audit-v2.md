@@ -128,6 +128,28 @@ bestätigen korrekten Empfang).
   vorbestehenden Struktur-Themen (`heading-order`, `landmark-unique`, `nested-interactive`) innerhalb der
   Original-Atlas-Dateien, unverändert.
 
+## Nachtrag: CLS-Fix für /buch (0,196 → <0,02)
+
+Auf Wunsch behoben statt nur berichtet, da klar ein Font-Loading-Bug und kein Server-Konfigurationsthema:
+`montserrat-900.woff2` (site-weit für `h1` verwendet) fehlte im Preload und lud unter echter
+Netzwerklatenz spät genug nach, um die Überschrift nach dem ersten Rendern zu verschieben.
+
+**Fix:** `<link rel="preload">` für `montserrat-900.woff2` ergänzt (war bisher einzige nicht vorgeladene
+Schriftdatei), `font-display` für diesen Schriftschnitt von `swap` auf `optional` geändert. `optional`
+statt Metrik-Matching (`ascent-override`/`size-adjust`) gewählt, weil es den Sprung durch Konstruktion
+eliminiert statt nur zu reduzieren — garantiert, nicht nur wahrscheinlich. Kompromiss: bei kaltem
+Cache kann die H1 einmalig in der Fallback-Schrift statt Montserrat erscheinen; bei jedem
+folgenden/gecachten Seitenaufruf unverändert Montserrat.
+
+**Nach Redeploy gegen die Live-URL zweimal gemessen** (Commit `444fc82`, Preload + `font-display:optional`
+im ausgelieferten CSS-Bundle direkt verifiziert):
+- Lauf 1: CLS **0**
+- Lauf 2: CLS **0,017** (Restursache: `montserrat-600`/`inter-600` laden spät nach, verschieben die
+  kleinen `dt`-Metadaten-Labels "Verlag/ISBN/Seiten/Erscheint" minimal — deutlich unterhalb der
+  0,1-Schwelle, nicht weiter verfolgt)
+
+Beide Läufe klar unter der geforderten 0,1-Schwelle. `test-results/lighthouse-live-buch-desktop-clsfix.json`.
+
 ## Zusammenfassung
 
 Keine neuen Blocker. Alle Kernfunktionen (Quiz, beide Atlanten, Navigation, Kontakt) live bestätigt. Die
