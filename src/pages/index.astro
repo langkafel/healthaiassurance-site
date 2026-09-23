@@ -1,9 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
 import CtaButtons from '../components/CtaButtons.astro';
 import ContactCta from '../components/ContactCta.astro';
 import { Icon } from 'astro-icon/components';
+
+const authorCredentials = [
+  'Charité',
+  'SAP Healthcare & Public Sector',
+  'ISTQB AI Testing zertifiziert',
+  'Autor „Vertrauenswürdige KI"',
+];
 
 const processSteps = [
   { n: '01', title: 'Erfassen', text: 'KI-Systeme und Einsatzbereiche identifizieren' },
@@ -48,15 +56,45 @@ const resources = [
     <div class="container">
       <p class="eyebrow">AI Governance for Healthcare</p>
       <h1>KI im Gesundheitswesen einsetzen. Verantwortung nachweisbar machen.</h1>
+      <p class="hero-audience">Für Kliniken, Klinikverbünde, Health-IT- und MedTech-Hersteller.</p>
       <p class="lead">
-        Welche KI-Systeme sind bei Ihnen im Einsatz? Welche regulatorischen Anforderungen gelten? Und wie
-        stellen Sie sicher, dass Risiken erkannt, Verantwortlichkeiten geklärt und Maßnahmen umgesetzt werden?
+        Health AI Assurance macht sichtbar, welche KI-Systeme Sie einsetzen und welche Pflichten dafür gelten
+        — und liefert ein wiederholbares Verfahren, um Risiken zu erkennen, Verantwortlichkeiten zu klären und
+        Maßnahmen nachweisbar umzusetzen.
       </p>
       <CtaButtons
         primary={{ label: 'Erstgespräch vereinbaren', href: 'mailto:info@peter-langkafel.de' }}
         secondary={{ label: 'Wissenscheck starten', href: '/quick-check' }}
       />
-      <p class="audience-line">Für Kliniken, Klinikverbünde, Health-IT- und MedTech-Hersteller.</p>
+    </div>
+  </section>
+
+  <section class="section author-trust">
+    <div class="container">
+      <div class="card author-card">
+        <div class="author-row">
+          <div class="author-avatar" aria-hidden="true">PL</div>
+          <div class="author-info">
+            <p class="author-name">Prof. Dr. med. Peter Langkafel, MBA</p>
+            <p class="author-role">
+              Arzt, Professor für Digital Health und Gründer — entwickelt Health AI Assurance aus über 20
+              Jahren Erfahrung an der Schnittstelle von Medizin, Technologie und Governance.
+            </p>
+            <div class="badge-row author-badges">
+              {authorCredentials.map((credential) => <Badge>{credential}</Badge>)}
+            </div>
+            <a
+              class="author-link"
+              href="https://peter-langkafel.de"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mehr zu Peter Langkafel und Beirats-/Advisory-Mandaten
+              <Icon name="ph:arrow-right" aria-hidden="true" width="14" height="14" />
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -175,17 +213,87 @@ const resources = [
 </BaseLayout>
 
 <style>
+  .hero-audience {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.85em;
+  }
+
   .lead {
     max-width: 68ch;
     font-size: 1.1rem;
     margin-bottom: 1.75em;
   }
 
-  .audience-line {
-    margin-top: 1.5em;
-    margin-bottom: 0;
+  .author-trust {
+    padding-top: 0;
+  }
+
+  .author-card {
+    padding: clamp(24px, 4vw, 36px);
+  }
+
+  .author-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .author-avatar {
+    flex: none;
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background: var(--color-card-alt);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    object-fit: cover;
+  }
+
+  .author-info {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .author-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+
+  .author-role {
     color: var(--color-text-muted);
     font-size: 0.95rem;
+    max-width: 62ch;
+    margin-bottom: 18px;
+  }
+
+  .author-badges {
+    margin-bottom: 18px;
+  }
+
+  .author-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .author-link:hover {
+    color: var(--color-accent);
   }
 
   .dashboard-mock {
