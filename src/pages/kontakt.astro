@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<BaseLayout
+  title="Kontakt"
+  description="Fragen, Beratung, Austausch zu KI im Gesundheitswesen — schreiben Sie Peter Langkafel eine E-Mail."
+>
+  <section class="section contact-page">
+    <div class="container">
+      <h1>Kontakt</h1>
+      <p class="lead">
+        Fragen, Beratung, Austausch – zu allem rund um KI im Gesundheitswesen freue ich mich über Ihre
+        Nachricht. Ob eine erste Einschätzung, ein fachlicher Austausch oder ein konkretes Anliegen: Schreiben
+        Sie mir einfach.
+      </p>
+
+      <CtaButtons primary={{ label: 'E-Mail schreiben', href: 'mailto:info@peter-langkafel.de' }} />
+
+      <a class="more-link" href="https://peter-langkafel.de" target="_blank" rel="noopener noreferrer">
+        Mehr zu Peter Langkafel und Beirats-/Advisory-Mandaten
+        <Icon name="ph:arrow-right" aria-hidden="true" width="14" height="14" />
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-page {
+    padding-top: clamp(56px, 9vw, 120px);
+  }
+
+  .lead {
+    max-width: 60ch;
+    font-size: 1.1rem;
+    margin-bottom: 1.75em;
+  }
+
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .more-link:hover {
+    color: var(--color-accent);
+  }
+</style>
