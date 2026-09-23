@@ -5,6 +5,13 @@ const ISBN = '978-3-98800-243-3';
 // TODO_MEDHOCHZWEI_URL — replace with the real medhochzwei product page URL once available.
 const MEDHOCHZWEI_URL = 'TODO_MEDHOCHZWEI_URL';
 
+const structureStats = [
+  { value: '20', label: 'Kapitel' },
+  { value: '6', label: 'Teile' },
+  { value: '21', label: 'Specials', desc: 'Vertiefende Exkurse zu Einzelthemen' },
+  { value: 'Executive Toolkit', desc: 'Checklisten und Vorlagen für die Praxis' },
+];
+
 const bookSchema = {
   '@context': 'https://schema.org',
   '@type': 'Book',
@@ -51,6 +58,14 @@ const bookSchema = {
             <dt>ISBN</dt>
             <dd>{ISBN}</dd>
           </div>
+          <div>
+            <dt>Seiten</dt>
+            <dd>ca. 250</dd>
+          </div>
+          <div>
+            <dt>Erscheint</dt>
+            <dd>Q1 2027</dd>
+          </div>
         </dl>
 
         <div class="btn-group">
@@ -62,6 +77,44 @@ const bookSchema = {
             <span class="soon-badge">Coming soon</span>
           </span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Für wen ist das Buch</h2>
+      <p class="audience-text">
+        Für Entscheiderinnen und Entscheider im Gesundheitswesen, in MedTech und Health-IT — Vorstände,
+        Geschäftsführungen, CIOs, CMIOs und Qualitätsverantwortliche. Das Buch richtet sich an
+        Management-Ebene, nicht an technische Spezialistinnen und Spezialisten: Es vermittelt, welche Fragen
+        zu stellen sind und wie KI-Verantwortung im Unternehmen organisiert wird — ohne vorauszusetzen, dass
+        man selbst Modelle baut oder trainiert.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <blockquote class="pull-quote">„Vertrauen entsteht durch Prüfung, nicht durch Versprechen."</blockquote>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Aufbau des Buchs</h2>
+      <div class="structure-grid">
+        {
+          structureStats.map((stat) => (
+            <div class="structure-stat">
+              <p class="stat-value">
+                {stat.value}
+                {stat.label && <span class="stat-label"> {stat.label}</span>}
+              </p>
+              {stat.desc && <p class="stat-desc">{stat.desc}</p>}
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
@@ -89,6 +142,7 @@ const bookSchema = {
 
   .book-meta {
     display: flex;
+    flex-wrap: wrap;
     gap: 32px;
     margin: 0 0 2em;
   }
@@ -124,5 +178,57 @@ const bookSchema = {
       max-width: 260px;
       margin-inline: auto;
     }
+  }
+
+  .audience-text {
+    max-width: 72ch;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+  }
+
+  .pull-quote {
+    margin: 0 auto;
+    max-width: 52ch;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-border);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .structure-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .structure-stat {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 24px;
+  }
+
+  .stat-value {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: var(--color-accent);
+    margin: 0 0 8px;
+  }
+
+  .stat-label {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-text);
+  }
+
+  .stat-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
   }
 </style>
