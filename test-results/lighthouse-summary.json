@@ -1,0 +1,122 @@
+{
+  "/": {
+    "scores": {
+      "performance": 87,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.5 s",
+      "largestContentfulPaint": "1.7 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.5 s"
+    }
+  },
+  "/loesung": {
+    "scores": {
+      "performance": 88,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.5 s",
+      "largestContentfulPaint": "1.7 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.5 s"
+    }
+  },
+  "/buch": {
+    "scores": {
+      "performance": 86,
+      "accessibility": 100,
+      "bestPractices": 96,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.5 s",
+      "largestContentfulPaint": "1.8 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.5 s"
+    }
+  },
+  "/incident-atlas": {
+    "scores": {
+      "performance": 91,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.2 s",
+      "largestContentfulPaint": "1.5 s",
+      "totalBlockingTime": "80 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.2 s"
+    }
+  },
+  "/quick-check": {
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.4 s",
+      "largestContentfulPaint": "1.5 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.4 s"
+    }
+  },
+  "/solutions-atlas": {
+    "scores": {
+      "performance": 90,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.4 s",
+      "largestContentfulPaint": "1.5 s",
+      "totalBlockingTime": "60 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.4 s"
+    }
+  },
+  "/impressum": {
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.2 s",
+      "largestContentfulPaint": "1.4 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.2 s"
+    }
+  },
+  "/datenschutz": {
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "firstContentfulPaint": "1.2 s",
+      "largestContentfulPaint": "1.4 s",
+      "totalBlockingTime": "0 ms",
+      "cumulativeLayoutShift": "0",
+      "speedIndex": "1.2 s"
+    }
+  }
+}

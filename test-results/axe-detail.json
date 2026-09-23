@@ -1,0 +1,97 @@
+{
+  "/": [],
+  "/loesung": [],
+  "/buch": [],
+  "/incident-atlas": [
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "help": "Heading levels should only increase by one",
+      "nodes": [
+        {
+          "target": [
+            "iframe",
+            "aside > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Heading order invalid",
+          "html": "<h3 style=\"font-size:24px;line-height:1.2;margin:13px 0\">Aus Fehlern anderer lernen. Health AI verantwortungsvoll einführen.</h3>"
+        }
+      ]
+    },
+    {
+      "id": "landmark-unique",
+      "impact": "moderate",
+      "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+      "nodes": [
+        {
+          "target": [
+            "header"
+          ],
+          "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable",
+          "html": "<header class=\"site-nav\" data-astro-cid-wpvy4v7s=\"\">"
+        },
+        {
+          "target": [
+            "#main-content"
+          ],
+          "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable",
+          "html": "<main id=\"main-content\">"
+        },
+        {
+          "target": [
+            "iframe",
+            "footer"
+          ],
+          "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable",
+          "html": "<footer class=\"footer\">"
+        }
+      ]
+    },
+    {
+      "id": "nested-interactive",
+      "impact": "serious",
+      "help": "Interactive controls must not be nested",
+      "nodes": [
+        {
+          "target": [
+            "iframe",
+            "#atlas"
+          ],
+          "failureSummary": "Fix any of the following:\n  Element has focusable descendants",
+          "html": "<svg id=\"atlas\" viewBox=\"0 0 680 460\" role=\"img\" aria-label=\"Interaktive systematische Punktkarte der KI-Fallkomplexe. Punkte sind anklickbar; nicht geografisch.\">"
+        }
+      ]
+    }
+  ],
+  "/solutions-atlas": [
+    {
+      "id": "heading-order",
+      "impact": "moderate",
+      "help": "Heading levels should only increase by one",
+      "nodes": [
+        {
+          "target": [
+            "iframe",
+            ".hero-side > h3"
+          ],
+          "failureSummary": "Fix any of the following:\n  Heading order invalid",
+          "html": "<h3>Von der Zulassung zur konkreten Anwendung</h3>"
+        }
+      ]
+    },
+    {
+      "id": "landmark-unique",
+      "impact": "moderate",
+      "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+      "nodes": [
+        {
+          "target": [
+            "#main-content"
+          ],
+          "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable",
+          "html": "<main id=\"main-content\">"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1552 @@
+{
+  "routes": {
+    "/": {
+      "path": "/",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\home-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\home-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Erstgespräch vereinbaren",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check starten",
+          "target": ""
+        },
+        {
+          "href": "https://peter-langkafel.de",
+          "text": "Mehr zu Peter Langkafel und Beirats-/Advisory-Mandaten",
+          "target": "_blank"
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Mehr erfahren",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Mehr erfahren",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Mehr erfahren",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Mehr erfahren",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Beratungsgespräch anfragen",
+          "target": ""
+        },
+        {
+          "href": "https://www.linkedin.com/in/TODO-linkedin-profil",
+          "text": "LinkedIn-Profil",
+          "target": "_blank"
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Startseite · Health AI Assurance",
+        "description": "Welche KI-Systeme sind bei Ihnen im Einsatz? Health AI Assurance macht KI-Governance im Gesundheitswesen nachweisbar.",
+        "ogTitle": "Startseite · Health AI Assurance",
+        "ogDescription": "Welche KI-Systeme sind bei Ihnen im Einsatz? Health AI Assurance macht KI-Governance im Gesundheitswesen nachweisbar.",
+        "ogUrl": "https://healthaiassurance.de/",
+        "canonical": "https://healthaiassurance.de/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "https://peter-langkafel.de",
+          "kind": "peter-langkafel-external",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://www.linkedin.com/in/TODO-linkedin-profil",
+          "kind": "todo-placeholder",
+          "ok": null,
+          "note": "known open TODO, not a bug"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/loesung": {
+      "path": "/loesung",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\loesung-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\loesung-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Werden Sie einer unserer ersten Referenzkunden — jetzt melde",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Beratungsgespräch anfragen",
+          "target": ""
+        },
+        {
+          "href": "https://www.linkedin.com/in/TODO-linkedin-profil",
+          "text": "LinkedIn-Profil",
+          "target": "_blank"
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Lösung · Health AI Assurance",
+        "description": "Health AI Assurance: ein strukturiertes Verfahren für nachweisbare KI-Governance im Gesundheitswesen — für SaMD-Hersteller und Kliniken.",
+        "ogTitle": "Lösung · Health AI Assurance",
+        "ogDescription": "Health AI Assurance: ein strukturiertes Verfahren für nachweisbare KI-Governance im Gesundheitswesen — für SaMD-Hersteller und Kliniken.",
+        "ogUrl": "https://healthaiassurance.de/loesung/",
+        "canonical": "https://healthaiassurance.de/loesung/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://www.linkedin.com/in/TODO-linkedin-profil",
+          "kind": "todo-placeholder",
+          "ok": null,
+          "note": "known open TODO, not a bug"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/buch": {
+      "path": "/buch",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\buch-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\buch-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "TODO_MEDHOCHZWEI_URL",
+          "text": "Beim Verlag ansehen",
+          "target": "_blank"
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Das Buch · Health AI Assurance",
+        "description": "Vertrauenswürdige KI – Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT. Erschienen im medhochzwei Verlag.",
+        "ogTitle": "Das Buch · Health AI Assurance",
+        "ogDescription": "Vertrauenswürdige KI – Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT. Erschienen im medhochzwei Verlag.",
+        "ogUrl": "https://healthaiassurance.de/buch/",
+        "canonical": "https://healthaiassurance.de/buch/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "TODO_MEDHOCHZWEI_URL",
+          "kind": "todo-placeholder",
+          "ok": null,
+          "note": "known open TODO, not a bug"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/incident-atlas": {
+      "path": "/incident-atlas",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\incident-atlas-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": {
+            "wrapperHeight": 21559,
+            "innerScrollHeight": 21557,
+            "innerClientHeight": 21557,
+            "noDoubleScroll": true
+          },
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\incident-atlas-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": {
+            "wrapperHeight": 9135,
+            "innerScrollHeight": 9134,
+            "innerClientHeight": 9134,
+            "noDoubleScroll": true
+          },
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Incident Atlas · Health AI Assurance",
+        "description": "Health AI Incident & Failure Atlas: eine kuratierte, quellenbasierte Recherche zu dokumentierten KI-Vorfällen und Implementierungsproblemen im Gesundheitswesen — 41 Fälle, durchsuchbar und filterbar.",
+        "ogTitle": "Incident Atlas · Health AI Assurance",
+        "ogDescription": "Health AI Incident & Failure Atlas: eine kuratierte, quellenbasierte Recherche zu dokumentierten KI-Vorfällen und Implementierungsproblemen im Gesundheitswesen — 41 Fälle, durchsuchbar und filterbar.",
+        "ogUrl": "https://healthaiassurance.de/incident-atlas/",
+        "canonical": "https://healthaiassurance.de/incident-atlas/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-unique",
+          "impact": "moderate",
+          "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "nodes": 3
+        },
+        {
+          "id": "nested-interactive",
+          "impact": "serious",
+          "help": "Interactive controls must not be nested",
+          "nodes": 1
+        }
+      ],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/quick-check": {
+      "path": "/quick-check",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\quick-check-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\quick-check-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "/",
+          "text": "Zum Buch & zu den Werkzeugen",
+          "target": ""
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Quick Check · Health AI Assurance",
+        "description": "12 Fragen, um in wenigen Minuten eine erste Einschätzung zu Ihrem KI-Governance-Status zu erhalten.",
+        "ogTitle": "Quick Check · Health AI Assurance",
+        "ogDescription": "12 Fragen, um in wenigen Minuten eine erste Einschätzung zu Ihrem KI-Governance-Status zu erhalten.",
+        "ogUrl": "https://healthaiassurance.de/quick-check/",
+        "canonical": "https://healthaiassurance.de/quick-check/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/solutions-atlas": {
+      "path": "/solutions-atlas",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\solutions-atlas-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": {
+            "wrapperHeight": 4475,
+            "innerScrollHeight": 4473,
+            "innerClientHeight": 4473,
+            "noDoubleScroll": true
+          },
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\solutions-atlas-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": {
+            "wrapperHeight": 2466,
+            "innerScrollHeight": 2464,
+            "innerClientHeight": 2464,
+            "noDoubleScroll": true
+          },
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Solutions Atlas · Health AI Assurance",
+        "description": "FDA-zugelassene KI-Medizinprodukte im Überblick: 1.614 Einträge, durchsuchbar und filterbar — mit Quellenangaben.",
+        "ogTitle": "Solutions Atlas · Health AI Assurance",
+        "ogDescription": "FDA-zugelassene KI-Medizinprodukte im Überblick: 1.614 Einträge, durchsuchbar und filterbar — mit Quellenangaben.",
+        "ogUrl": "https://healthaiassurance.de/solutions-atlas/",
+        "canonical": "https://healthaiassurance.de/solutions-atlas/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "help": "Heading levels should only increase by one",
+          "nodes": 1
+        },
+        {
+          "id": "landmark-unique",
+          "impact": "moderate",
+          "help": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "nodes": 1
+        }
+      ],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/impressum": {
+      "path": "/impressum",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\impressum-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\impressum-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "info@peter-langkafel.de",
+          "target": ""
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Impressum · Health AI Assurance",
+        "description": "Impressum von Health AI Assurance.",
+        "ogTitle": "Impressum · Health AI Assurance",
+        "ogDescription": "Impressum von Health AI Assurance.",
+        "ogUrl": "https://healthaiassurance.de/impressum/",
+        "canonical": "https://healthaiassurance.de/impressum/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    },
+    "/datenschutz": {
+      "path": "/datenschutz",
+      "byViewport": {
+        "375": {
+          "screenshot": "screenshots\\datenschutz-375.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        },
+        "1440": {
+          "screenshot": "screenshots\\datenschutz-1440.png",
+          "hasHorizontalOverflow": false,
+          "iframeCheck": null,
+          "consoleIssues": []
+        }
+      },
+      "links": [
+        {
+          "href": "#main-content",
+          "text": "Zum Inhalt springen",
+          "target": ""
+        },
+        {
+          "href": "/",
+          "text": "Health AI Assurance",
+          "target": ""
+        },
+        {
+          "href": "/loesung",
+          "text": "Lösung",
+          "target": ""
+        },
+        {
+          "href": "/incident-atlas",
+          "text": "Incident Atlas",
+          "target": ""
+        },
+        {
+          "href": "/solutions-atlas",
+          "text": "Solutions Atlas",
+          "target": ""
+        },
+        {
+          "href": "/quick-check",
+          "text": "Quick Check",
+          "target": ""
+        },
+        {
+          "href": "/buch",
+          "text": "Buch",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "text": "Login für Bestandskunden",
+          "target": "_blank"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "info@peter-langkafel.de",
+          "target": ""
+        },
+        {
+          "href": "/impressum",
+          "text": "Impressum",
+          "target": ""
+        },
+        {
+          "href": "/datenschutz",
+          "text": "Datenschutz",
+          "target": ""
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "text": "Kontakt",
+          "target": ""
+        }
+      ],
+      "meta": {
+        "title": "Datenschutz · Health AI Assurance",
+        "description": "Datenschutzerklärung von Health AI Assurance.",
+        "ogTitle": "Datenschutz · Health AI Assurance",
+        "ogDescription": "Datenschutzerklärung von Health AI Assurance.",
+        "ogUrl": "https://healthaiassurance.de/datenschutz/",
+        "canonical": "https://healthaiassurance.de/datenschutz/"
+      },
+      "console": [],
+      "requests": [],
+      "axeViolations": [],
+      "linkChecks": [
+        {
+          "href": "/",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/loesung",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/incident-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/solutions-atlas",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/quick-check",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/buch",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "https://app.healthaiassurance.de",
+          "kind": "login-external",
+          "ok": false,
+          "note": "status ERR:fetch failed"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        },
+        {
+          "href": "/impressum",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "/datenschutz",
+          "kind": "internal",
+          "ok": true,
+          "note": "status 200"
+        },
+        {
+          "href": "mailto:info@peter-langkafel.de",
+          "kind": "mailto",
+          "ok": true,
+          "note": "correct address"
+        }
+      ]
+    }
+  },
+  "blockers": [],
+  "minor": [],
+  "ok": [],
+  "robots": {
+    "ok": true,
+    "status": 200
+  },
+  "sitemap": {
+    "ok": true,
+    "status": 200
+  },
+  "quickCheck": {
+    "started": true,
+    "questionsAnswered": 12,
+    "resultShown": true,
+    "resultText": "1 von 12 Fragen richtig · 23. September 2026",
+    "restartWorks": true,
+    "errors": []
+  },
+  "solutionsAtlas": {
+    "tabsWork": true,
+    "searchWorks": true,
+    "selectFilterWorks": true,
+    "paginationWorks": true,
+    "error": null,
+    "searchCounts": {
+      "before": "1.614 Treffer",
+      "after": "1.230 Treffer"
+    },
+    "selectFilterCounts": {
+      "option": "Anästhesiologie",
+      "before": "1.614 Treffer",
+      "after": "30 Treffer"
+    }
+  },
+  "incidentAtlas": {
+    "filterWorks": true,
+    "tabWorks": true,
+    "modalWorks": true,
+    "error": null,
+    "filterCounts": {
+      "before": 41,
+      "after": 4
+    }
+  }
+}

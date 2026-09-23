@@ -17,7 +17,9 @@
   --color-red-muted: #dc2626;
 
   --color-text: #f8f9fa;
-  --color-text-muted: #9bb5c8;
+  /* #9bb5c8 measured 4.49:1 on --color-card via axe-core (just under
+     4.5) -- nudged lighter for a verified pass with margin. */
+  --color-text-muted: #9fb9cb;
   --color-text-footer: #8da3b5;
 
   /* Radius */
