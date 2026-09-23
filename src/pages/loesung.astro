@@ -65,6 +65,23 @@ const modules = [
   },
 ];
 
+const perspectives = [
+  { icon: 'ph:user-light', title: 'Geschäftsführung', quote: '„Ist das sicher? Lohnt sich das?“' },
+  { icon: 'ph:gear-six-light', title: 'CIO / IT-Leitung', quote: '„Kann ich das integrieren?“' },
+  { icon: 'ph:lock-light', title: 'Datenschutz', quote: '„Wo liegen unsere Daten?“' },
+  { icon: 'ph:heartbeat-light', title: 'CMIO / Medizin / QM', quote: '„Ist das medizinisch vertretbar?“' },
+  { icon: 'ph:shopping-cart-light', title: 'Einkauf', quote: '„Welches Risiko gehe ich ein?“' },
+  { icon: 'ph:handshake-light', title: 'Hersteller', quote: '„Wie überzeuge ich Kliniken schneller?“' },
+];
+
+const comparison = [
+  ['Nachweise verstreut in E-Mails & Excel', 'Zentrale, versionierte Vendor-Akte'],
+  ['Prüftiefe von Person zu Person unterschiedlich', 'Einheitlicher Kriterienkatalog in 15 Dimensionen'],
+  ['Kosten & Nutzen nicht strukturiert bewertet', 'TCO & Nutzenhypothesen als echte Datensätze'],
+  ['Entscheidung schwer zu begründen', 'Gremienfähiger Bericht mit Entscheidungsreife'],
+  ['Keine Wiedervorlage nach Go-live', 'Lifecycle-Sicht: Re-Assessments & Reviews'],
+];
+
 const regulatoryRows = [
   {
     topic: 'Art. 50 Transparenzpflichten',
@@ -129,6 +146,31 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
     </div>
   </section>
 
+  <section class="section perspectives-section">
+    <div class="container">
+      <p class="eyebrow">Zielgruppen</p>
+      <h2>Es gibt nicht „den“ Nutzer</h2>
+      <p class="section-intro">
+        Sechs Perspektiven, sechs Kernfragen — Health AI Assurance beantwortet sie alle aus derselben Datengrundlage.
+      </p>
+      <div class="module-grid perspective-grid">
+        {
+          perspectives.map((p) => (
+            <div class="module-card">
+              <span class="module-icon">
+                <Icon name={p.icon} aria-hidden="true" width="24" height="24" />
+              </span>
+              <div class="module-body">
+                <h3>{p.title}</h3>
+                <p class="persp-quote">{p.quote}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <h2>Die sechs Module</h2>
@@ -170,6 +212,43 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
           gesetzliche Konformitätsbewertung oder Zertifizierung.
         </p>
       </Card>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Nutzen</p>
+      <h2>Der Unterschied im Klinikalltag</h2>
+      <div class="compare">
+        <div class="compare-head" aria-hidden="true">
+          <span class="compare-title compare-title-without">Ohne Health AI Assurance</span>
+          <span></span>
+          <span class="compare-title compare-title-with">Mit Health AI Assurance</span>
+        </div>
+        {
+          comparison.map(([without, withHaa]) => (
+            <div class="compare-row">
+              <p class="compare-cell compare-without">
+                <Icon name="ph:x-circle-light" aria-hidden="true" width="24" height="24" />
+                <span>
+                  <span class="cell-label">Ohne Health AI Assurance: </span>
+                  {without}
+                </span>
+              </p>
+              <span class="compare-arrow" aria-hidden="true">
+                <Icon name="ph:arrow-right-light" width="28" height="28" />
+              </span>
+              <p class="compare-cell compare-with">
+                <Icon name="ph:check-circle-light" aria-hidden="true" width="24" height="24" />
+                <span>
+                  <span class="cell-label">Mit Health AI Assurance: </span>
+                  {withHaa}
+                </span>
+              </p>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </section>
 
@@ -283,6 +362,117 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
     font-size: 0.92rem;
   }
 
+  .perspectives-section {
+    padding-bottom: 0;
+  }
+
+  .section-intro {
+    max-width: 62ch;
+    margin-bottom: 32px;
+  }
+
+  .perspective-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .persp-quote {
+    font-style: italic;
+    color: var(--color-text-muted);
+  }
+
+  .compare {
+    display: grid;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .compare-head,
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .compare-title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .compare-title::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    margin-right: 8px;
+  }
+
+  .compare-title-without::before {
+    background: var(--color-red);
+  }
+
+  .compare-title-with::before {
+    background: var(--color-green);
+  }
+
+  .compare-cell {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin: 0;
+    padding: 16px 18px;
+    border: 1px solid;
+    border-radius: var(--radius-card);
+    color: var(--color-text);
+    line-height: 1.5;
+  }
+
+  .compare-cell :global(svg) {
+    flex: none;
+    margin-top: 1px;
+  }
+
+  .compare-without {
+    border-color: var(--color-red);
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  .compare-without :global(svg) {
+    color: var(--color-red);
+  }
+
+  .compare-with {
+    border-color: var(--color-green);
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .compare-with :global(svg) {
+    color: var(--color-green);
+  }
+
+  .compare-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+  }
+
+  .cell-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
   .sticker-section {
     padding-block: 0 clamp(48px, 6vw, 96px);
     text-align: center;
@@ -306,9 +496,51 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
     transform: rotate(-3deg);
   }
 
+  @media (max-width: 900px) {
+    .perspective-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 680px) {
-    .module-grid {
+    .module-grid,
+    .perspective-grid {
       grid-template-columns: 1fr;
+    }
+
+    .compare {
+      gap: 28px;
+    }
+
+    .compare-head {
+      display: none;
+    }
+
+    .compare-row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .compare-arrow {
+      transform: rotate(90deg);
+      height: 28px;
+    }
+
+    .cell-label {
+      position: static;
+      display: block;
+      width: auto;
+      height: auto;
+      margin: 0 0 2px;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
     }
   }
 

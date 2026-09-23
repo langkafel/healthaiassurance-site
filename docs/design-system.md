@@ -59,7 +59,7 @@ Browsern. Relevante Werte:
 Es ist jeweils nur die Latin-Teilmenge eingebunden (`U+0000–00FF` — deckt Umlaute und ß ab).
 
 Icons: **Phosphor** über `astro-icon` (`<Icon name="ph:..." />`), zur Build-Zeit als Inline-SVG. **Ist-Stand:
-durchgehend das Standardgewicht („regular“).** Die ursprüngliche Vorgabe lautete „light“ (`fill` für aktive
+überwiegend das Standardgewicht („regular“); die neuen Abschnitte „Zielgruppen“ und „Nutzen“ auf `/loesung` nutzen bereits „light“.** Die ursprüngliche Vorgabe lautete „light“ (`fill` für aktive
 Zustände); das wurde nicht umgesetzt und ist als offener Punkt geführt. Verfügbare Varianten im Set:
 `ph:<name>-light`, `-fill`, `-bold`, `-thin`, `-duotone`.
 
