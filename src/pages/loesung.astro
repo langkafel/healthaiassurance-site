@@ -34,12 +34,37 @@ const processSteps = [
   },
 ];
 
-const features = [
-  { icon: 'ph:list-checks', title: 'Dokumentiertes KI-Inventar', text: 'Vollständige, versionierte Übersicht aller eingesetzten KI-Systeme.' },
-  { icon: 'ph:magnifying-glass', title: 'Strukturierte Gap-Analyse', text: 'Systematischer Abgleich mit regulatorischen Anforderungen und Nachweisen.' },
-  { icon: 'ph:list-numbers', title: 'Priorisierte Maßnahmen', text: 'Klare Handlungsempfehlungen nach Risiko und Dringlichkeit sortiert.' },
-  { icon: 'ph:users-three', title: 'Zugewiesene Verantwortlichkeiten', text: 'Eindeutige Zuständigkeiten für jede Maßnahme und jedes System.' },
-  { icon: 'ph:chart-line-up', title: 'Management-Reporting', text: 'Aufbereitete Statusberichte für Geschäftsführung und Aufsichtsgremien.' },
+const modules = [
+  {
+    icon: 'ph:shield',
+    title: 'Assurance-Kern & Glossar',
+    text: '285 Kriterien in 15 Dimensionen — EU AI Act, MDR/IVDR, ISO/IEC 42001, DSGVO, B3S, NIS2.',
+  },
+  {
+    icon: 'ph:sliders-horizontal',
+    title: 'Technische Eignung',
+    text: 'Ist das Produkt technisch transparent, nachvollziehbar und geeignet?',
+  },
+  {
+    icon: 'ph:buildings',
+    title: 'Betriebsbereitschaft',
+    text: 'Ist die Organisation bereit für Einführung und dauerhaften Betrieb?',
+  },
+  {
+    icon: 'ph:currency-eur',
+    title: 'Wirtschaftlichkeit & TCO',
+    text: 'Kosten- und Nutzenpositionen, Szenarien, Break-even — als echte Datensätze.',
+  },
+  {
+    icon: 'ph:heartbeat',
+    title: 'Versorgungsnutzen',
+    text: 'Nutzenhypothesen mit Baseline, Zielwert, Messgröße und Verantwortlichem.',
+  },
+  {
+    icon: 'ph:handshake',
+    title: 'Vendor Assurance Portal',
+    text: 'Strukturierter, versionierter Austausch mit Anbietern statt E-Mail-Chaos.',
+  },
 ];
 
 const regulatoryRows = [
@@ -107,18 +132,33 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
 
   <section class="section">
     <div class="container">
-      <h2>Konkrete Lieferergebnisse</h2>
-      <div class="card-grid">
+      <h2>Die sechs Module</h2>
+      <blockquote class="pull-quote">
+        Jede Klinik führt ein Medizinprodukte-Register. Warum nicht auch ein KI-Register?
+      </blockquote>
+      <div class="module-grid">
         {
-          features.map((feature) => (
-            <Card>
-              <Icon name={feature.icon} class="feature-icon" aria-hidden="true" width="28" height="28" />
-              <h3>{feature.title}</h3>
-              <p>{feature.text}</p>
-            </Card>
+          modules.map((mod) => (
+            <div class="module-card">
+              <span class="module-icon">
+                <Icon name={mod.icon} aria-hidden="true" width="24" height="24" />
+              </span>
+              <div class="module-body">
+                <h3>{mod.title}</h3>
+                <p>{mod.text}</p>
+              </div>
+            </div>
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <section class="section sticker-section">
+    <div class="container">
+      <a class="ref-sticker" href="mailto:info@peter-langkafel.de">
+        Werden Sie einer unserer ersten Referenzkunden — jetzt melden!
+      </a>
     </div>
   </section>
 
@@ -193,9 +233,84 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
     height: 18px;
   }
 
-  .card-grid :global(.feature-icon) {
+  .pull-quote {
+    margin: 0 0 32px;
+    max-width: 56ch;
+    padding-left: 20px;
+    border-left: 2px solid var(--color-border);
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(1.1rem, 0.95rem + 0.8vw, 1.4rem);
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  .module-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .module-card {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: 24px;
+  }
+
+  .module-icon {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--color-card-alt);
     color: var(--color-accent);
-    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .module-body h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+
+  .module-body p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+
+  .sticker-section {
+    padding-block: 0 clamp(48px, 6vw, 96px);
+    text-align: center;
+  }
+
+  .ref-sticker {
+    display: inline-block;
+    background: var(--color-amber);
+    color: var(--color-bg);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: clamp(1rem, 0.85rem + 0.6vw, 1.2rem);
+    padding: 20px 36px;
+    border-radius: 20px;
+    transform: rotate(-6deg);
+    text-decoration: none;
+    max-width: 46ch;
+  }
+
+  .ref-sticker:hover {
+    transform: rotate(-3deg);
+  }
+
+  @media (max-width: 680px) {
+    .module-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .boundary-card p {
