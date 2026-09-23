@@ -1,31 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import EmbedFrame from '../components/EmbedFrame.astro';
 ---
 
 <BaseLayout
   title="Incident Atlas"
-  description="Health AI Incident Atlas — Inhalt folgt in Kürze."
-  noindex
+  description="Health AI Incident & Failure Atlas: eine kuratierte, quellenbasierte Recherche zu dokumentierten KI-Vorfällen und Implementierungsproblemen im Gesundheitswesen — 41 Fälle, durchsuchbar und filterbar."
 >
-  <section class="section placeholder">
+  <section class="section">
     <div class="container">
-      <p class="eyebrow">In Vorbereitung</p>
-      <h1>Health AI Incident Atlas</h1>
-      <p>Inhalt folgt in Kürze.</p>
-      <a class="btn btn-primary" href="/">Zurück zur Startseite</a>
+      <p class="eyebrow">Research Dashboard</p>
+      <h1>Incident Atlas</h1>
+      <p class="lead">
+        Eine kuratierte Recherche öffentlich dokumentierter Vorfälle, Implementierungsprobleme und
+        wissenschaftlicher Befunde zu KI im Gesundheitswesen — mit Quellenangaben, durchsuchbar und filterbar
+        nach Fachbereich, Art des Befunds und Evidenzgrad.
+      </p>
+
+      <div class="atlas-frame">
+        <EmbedFrame src="/embeds/incident-atlas.html" title="Health AI Assurance Incident Atlas" />
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .placeholder {
-    text-align: center;
-    padding-block: clamp(96px, 16vw, 180px);
+  .lead {
+    max-width: 68ch;
+    font-size: 1.05rem;
+    margin-bottom: 1.75em;
   }
 
-  .placeholder p {
-    max-width: 50ch;
-    margin-inline: auto;
-    margin-bottom: 2em;
+  .atlas-frame {
+    margin-top: 1.75em;
   }
 </style>
