@@ -5,6 +5,7 @@ import Badge from '../components/Badge.astro';
 import CtaButtons from '../components/CtaButtons.astro';
 import ContactCta from '../components/ContactCta.astro';
 import { Icon } from 'astro-icon/components';
+import { personSchema } from '../lib/schema';
 
 const authorCredentials = [
   'Charité',
@@ -30,7 +31,7 @@ const resources = [
   {
     icon: 'ph:check-square-offset',
     title: 'Quick Check',
-    text: '12 Fragen für eine erste Einschätzung Ihres Governance-Status.',
+    text: '15 Fragen für eine erste Einschätzung Ihres Governance-Status.',
     href: '/quick-check',
   },
   {
@@ -51,6 +52,7 @@ const resources = [
 <BaseLayout
   title="Startseite"
   description="Welche KI-Systeme sind bei Ihnen im Einsatz? Health AI Assurance macht KI-Governance im Gesundheitswesen nachweisbar."
+  structuredData={[personSchema(Astro.site)]}
 >
   <section class="section hero">
     <div class="container">

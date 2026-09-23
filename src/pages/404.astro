@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import { Icon } from 'astro-icon/components';
+
+const links = [
+  {
+    href: '/loesung',
+    icon: 'ph:shield',
+    title: 'Lösung',
+    text: 'Das Verfahren hinter Health AI Assurance.',
+  },
+  {
+    href: '/incident-atlas',
+    icon: 'ph:siren',
+    title: 'Incident Atlas',
+    text: 'Dokumentierte KI-Vorfälle im Gesundheitswesen.',
+  },
+  {
+    href: '/quick-check',
+    icon: 'ph:check-square-offset',
+    title: 'Quick Check',
+    text: '15 Fragen für eine erste Einschätzung.',
+  },
+];
+---
+
+<BaseLayout
+  title="Seite nicht gefunden"
+  description="Diese Seite existiert nicht oder wurde verschoben."
+  noindex
+>
+  <section class="section not-found">
+    <div class="container">
+      <p class="eyebrow">Fehler 404</p>
+      <h1>Seite nicht gefunden</h1>
+      <p class="lead">
+        Diese Adresse gibt es nicht (mehr) — vielleicht wurde die Seite verschoben oder der Link enthält einen
+        Tippfehler.
+      </p>
+      <a class="btn btn-primary" href="/">Zur Startseite</a>
+
+      <h2 class="suggest-heading">Vielleicht suchen Sie eine dieser Seiten</h2>
+      <div class="card-grid">
+        {
+          links.map((link) => (
+            <Card alt>
+              <Icon name={link.icon} aria-hidden="true" width="26" height="26" class="suggest-icon" />
+              <h3>{link.title}</h3>
+              <p>{link.text}</p>
+              <a class="suggest-link" href={link.href}>
+                Öffnen <Icon name="ph:arrow-right" aria-hidden="true" width="16" height="16" />
+              </a>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-top: clamp(56px, 9vw, 120px);
+  }
+
+  .lead {
+    max-width: 56ch;
+    font-size: 1.1rem;
+    margin-bottom: 1.75em;
+  }
+
+  .suggest-heading {
+    font-size: 1.15rem;
+    margin: clamp(40px, 6vw, 72px) 0 20px;
+  }
+
+  .card-grid :global(.suggest-icon) {
+    color: var(--color-accent);
+    margin-bottom: 10px;
+  }
+
+  .card-grid :global(.card) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .suggest-link {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+  }
+</style>

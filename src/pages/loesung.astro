@@ -4,6 +4,7 @@ import Card from '../components/Card.astro';
 import Badge from '../components/Badge.astro';
 import ContactCta from '../components/ContactCta.astro';
 import { Icon } from 'astro-icon/components';
+import { personSchema } from '../lib/schema';
 
 const stichtag = new Date().toLocaleDateString('de-DE', {
   day: 'numeric',
@@ -91,6 +92,7 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
 <BaseLayout
   title="Lösung"
   description="Health AI Assurance: ein strukturiertes Verfahren für nachweisbare KI-Governance im Gesundheitswesen — für SaMD-Hersteller und Kliniken."
+  structuredData={[personSchema(Astro.site)]}
 >
   <section class="section hero-solution">
     <div class="container">
