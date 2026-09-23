@@ -53,6 +53,15 @@
   font-family: 'Montserrat';
   font-style: normal;
   font-weight: 900;
-  font-display: swap;
+  /* optional (not swap): weight 900 is h1 on every page, so it's the
+     highest-stakes font on the site for layout shift. `swap` caused a
+     measured CLS of 0.196 on /buch under real network latency (this
+     weight wasn't preloaded, so it arrived late and reflowed the H1
+     after first paint). `optional` gives the font a short block
+     window and, if it misses that window, keeps the fallback for the
+     rest of that page view instead of swapping in later -- trading an
+     occasional fallback-font H1 on a cold cache for a layout shift
+     that's eliminated by construction rather than merely reduced. */
+  font-display: optional;
   src: url('/fonts/montserrat-900.woff2') format('woff2');
 }
