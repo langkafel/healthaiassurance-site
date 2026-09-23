@@ -38,8 +38,8 @@ Der Quick Check ist **inline** eingebettet (`QuickCheckEmbed.astro`).
 **Konsequenz.**
 - Atlanten sind visuell eigene Dokumente: Tokens und Komponenten gelten dort **nicht** automatisch (→ ADR 2),
   die Höhe muss synchronisiert werden (→ ADR 3), Deep-Links in den Atlas gibt es nicht.
-- Sie sind unter `/embeds/*.html` **direkt erreichbar** und potentiell indexierbar (offen, siehe
-  [open-items.md](open-items.md)).
+- Sie sind unter `/embeds/*.html` **direkt erreichbar**, aber per  von der Indexierung
+  ausgenommen (Duplicate Content zu den Seiten, kein Nav/Footer/Impressum).
 - Der Quick Check muss seine Stile selbst scopen (`.quickcheck …`) und die `is:global`-Regel beachten (→ ADR 4).
   Neue globale Selektoren außerhalb von `.quickcheck` dürfen dort **nicht** entstehen; das prüft
   `scripts/css-leak-check.mjs`.

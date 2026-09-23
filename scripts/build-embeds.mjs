@@ -7,7 +7,8 @@
 //   1. Replace the original <style> block with the dark-theme stylesheet in
 //      scripts/embeds/*.dark.css (every color mapped to the design tokens).
 //   2. Patch the few colors that live in JS/HTML instead of CSS.
-//   3. Inject the postMessage height reporter (see EmbedFrame.astro for the
+//   3. Add <meta robots noindex,nofollow> (the files are also reachable directly).
+//   4. Inject the postMessage height reporter (see EmbedFrame.astro for the
 //      receiving side), hooked into the function that changes the visible
 //      content, and placed BEFORE the first <script> tag.
 //
@@ -54,6 +55,11 @@ function replaceExactlyOnce(html, oldStr, newStr, label) {
   return html.split(oldStr).join(newStr);
 }
 
+const NOINDEX = '<meta name="robots" content="noindex, nofollow">';
+function addNoindex(html) {
+  return replaceExactlyOnce(html, '</head>', NOINDEX + '\n</head>', 'noindex meta');
+}
+
 function swapStyle(html, cssPath) {
   const css = read(cssPath);
   if (!/<style>[\s\S]*?<\/style>/.test(html)) throw new Error('no <style> block in source');
@@ -76,6 +82,7 @@ function injectHeightScript(html, hookOld, hookLabel) {
 {
   let html = read('source-files/KI_Medizinprodukte_Interaktiver_Atlas.html');
   html = swapStyle(html, 'scripts/embeds/solutions-atlas.dark.css');
+  html = addNoindex(html);
   html = replaceExactlyOnce(html, 'stroke="#e6eeee"', 'stroke="#243d55"', 'solutions gridline');
   html = replaceExactlyOnce(
     html,
@@ -97,6 +104,7 @@ function injectHeightScript(html, hookOld, hookLabel) {
 {
   let html = read('source-files/Health_AI_Incident_Failure_Atlas_ERWEITERT_41_2026-09-23.html');
   html = swapStyle(html, 'scripts/embeds/incident-atlas.dark.css');
+  html = addNoindex(html);
   // Colors hardcoded in the SVG chart script (category dots, rings, labels).
   const patches = [
     ["COLORS={real:'#58c4e8',reported:'#f6c16b',experimental:'#ec91aa'}", "COLORS={real:'#5bc0eb',reported:'#f59e0b',experimental:'#f472b6'}"],

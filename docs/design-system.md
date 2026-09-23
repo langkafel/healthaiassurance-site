@@ -69,11 +69,10 @@ Alle Schriften werden von **diesem Server** ausgeliefert (`public/fonts/*.woff2`
 `src/styles/fonts.css`). Es gibt **keine** Requests an `fonts.googleapis.com` oder `fonts.gstatic.com`.
 
 **Grund: DSGVO.** Wer Google Fonts dynamisch von Google-Servern einbindet, überträgt beim Seitenaufruf die
-IP-Adresse des Besuchers an Google (USA). Das Landgericht München I hat das mit Urteil vom 20.01.2022
-(Az. 3 O 17493/20) als Verstoß gegen die DSGVO gewertet und dem klagenden Website-Besucher Unterlassung und
-Schadensersatz zugesprochen. Ohne Einwilligung (und diese Seite hat bewusst kein Consent-Banner, siehe
-[ADR 6](decisions.md)) ist Selbsthosting die saubere Lösung. *(Rechtliche Einordnung: Zitat vor externer
-Verwendung bitte gegenprüfen — das hier ist Entwicklerkontext, keine Rechtsberatung.)*
+IP-Adresse des Besuchers an Google (USA). Das gilt datenschutzrechtlich als problematisch. Ohne Einwilligung
+(und diese Seite hat bewusst kein Consent-Banner, siehe [ADR 6](decisions.md)) ist Selbsthosting die saubere
+Lösung. *(Allgemeine, nicht geprüfte Aussage ohne belegte Rechtsprechung — Entwicklerkontext, keine
+Rechtsberatung; bei Bedarf juristisch klären lassen.)*
 
 Das ist kein theoretisches Risiko: Die ursprünglich gelieferte Quick-Check-Datei lud Google Fonts **live** nach.
 Das fiel erst auf, als der Netzwerkverkehr im echten Browser mitgeschnitten wurde, und wurde entfernt.

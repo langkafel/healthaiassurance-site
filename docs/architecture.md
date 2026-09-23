@@ -120,6 +120,6 @@ Konsequenzen:
 - `dist/<route>/index.html` je Seite, `dist/404.html`, `dist/sitemap-*.xml`.
 - **`dist/embeds/*.html`** sind unverändert kopierte Dateien aus `public/`. Sie sind eigenständige Dokumente mit
   eigenem `<head>` und werden per `<iframe>` eingebunden (→ [ADR 1](decisions.md)). Sie sind auch **direkt
-  unter ihrer URL erreichbar** (`/embeds/incident-atlas.html`) — siehe [open-items.md](open-items.md).
+  unter ihrer URL erreichbar** (`/embeds/incident-atlas.html`), tragen aber `noindex, nofollow`.
 - Astro erzeugt **ein CSS-Bundle je Seite** plus ein gemeinsames für das Layout
   (`BaseLayout.*.css`). Seiten laden nur ihr eigenes Bundle: Die Startseite lädt z. B. nie das Quick-Check-CSS.
