@@ -24,7 +24,6 @@ Stand: 23. September 2026. Status: **offen** / **erledigt**. Beim Erledigen bitt
 | offen | **Favicon/Logo ist Platzhalter** | „HAA“ in handgezeichneten SVG-Pfaden (`generate-brand-assets.mjs`). Echtes Logo → Skript anpassen, Assets neu erzeugen. |
 | offen | **`/embeds/*.html` direkt erreichbar/indexierbar** | Ohne Layout, Nav und Kontext. Maßnahme: `Disallow: /embeds/` in `robots.txt` und/oder `noindex`-Meta beim Bau (`build-embeds.mjs`). `robots.txt` allein verhindert Indexierung nicht zuverlässig. |
 | offen | **Inkonsistentes Branding innerhalb der Embeds** | Interne Titel/Köpfe („AI Medical Devices Atlas“, „Standalone-Prototyp“, Incident-Header mit „HAA / HEALTH AI ASSURANCE“) sind Originaltexte. Redaktionell entscheiden, ob angepasst wird (→ `build-embeds.mjs`-Patches). |
-| offen | **`/loesung`: „Stand“ ist das Build-Datum** | `new Date()` zur Build-Zeit, nicht das Datum der letzten inhaltlichen Änderung. Bei jedem Rebuild ändert sich das Datum. Fest eintragen oder aus dem Commit ableiten. |
 | offen | **Footer: `aria-label="Rechtliches"` enthält „Kontakt“** | Kontakt ist nicht rechtlich; Label auf „Fußzeile“ o. Ä. ändern oder Kontakt herausnehmen. |
 | offen | **Quick Check kündigt Plattform als „in Kürze verfügbar“ an** | Text im Intro passt nicht mehr, sobald die Plattform live ist; dann aktualisieren. |
 | offen | **Zählerstellen „15 Fragen“** | Nicht abgeleitet, an mehreren Stellen ausgeschrieben ([content.md](content.md)). Bei jeder Änderung der Fragenzahl von Hand nachziehen. |
@@ -43,4 +42,5 @@ Stand: 23. September 2026. Status: **offen** / **erledigt**. Beim Erledigen bitt
 | erledigt | Quick Check auf 15 Fragen (Master-Version), alte „12 Fragen“-Reste bereinigt. |
 | erledigt | OG-Image, Favicon-Set, 404-Seite, Person-Schema (ohne `sameAs`). |
 | erledigt | `/kontakt`-Seite; „Kontakt“ in Header und Footer verweist darauf. |
+| erledigt | `/loesung`: „Stand“ ist ein manuell gepflegtes Datum (`stichtag` in `loesung.astro`, 23.09.2026), kein Build-Datum mehr. |
 | erledigt | Projektdokumentation (diese Dateien). |

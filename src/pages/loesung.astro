@@ -6,11 +6,8 @@ import ContactCta from '../components/ContactCta.astro';
 import { Icon } from 'astro-icon/components';
 import { personSchema } from '../lib/schema';
 
-const stichtag = new Date().toLocaleDateString('de-DE', {
-  day: 'numeric',
-  month: 'long',
-  year: 'numeric',
-});
+// Manuell pflegen: nur ändern, wenn der Regulatorik-Abschnitt inhaltlich überprüft wurde (nicht bei jedem Deploy).
+const stichtag = '23. September 2026';
 
 const processSteps = [
   {
