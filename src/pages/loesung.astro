@@ -1,0 +1,217 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import Badge from '../components/Badge.astro';
+import ContactCta from '../components/ContactCta.astro';
+import { Icon } from 'astro-icon/components';
+
+const stichtag = new Date().toLocaleDateString('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const processSteps = [
+  {
+    n: '01',
+    title: 'Erfassen',
+    text: 'Alle im Einsatz befindlichen und geplanten KI-Systeme werden strukturiert erfasst: Einsatzbereich, Datengrundlage, Hersteller, Schnittstellen und betroffene Prozesse. Ergebnis ist ein dokumentiertes KI-Inventar als verlässliche Ausgangsbasis.',
+  },
+  {
+    n: '02',
+    title: 'Bewerten',
+    text: 'Für jedes System werden regulatorische Anforderungen, Risikoklasse und vorhandene Nachweise geprüft. Eine strukturierte Gap-Analyse zeigt, wo Dokumentation, Kontrollen oder Freigaben fehlen.',
+  },
+  {
+    n: '03',
+    title: 'Handeln',
+    text: 'Aus der Bewertung werden priorisierte Maßnahmen abgeleitet und klaren Verantwortlichen zugewiesen — inklusive Fristen und Freigabeprozessen, etwa im Rahmen eines Procurement Gates.',
+  },
+  {
+    n: '04',
+    title: 'Überwachen',
+    text: 'Status, Änderungen an Systemen und gemeldete Vorfälle werden laufend nachverfolgt. Management-Reporting macht den Fortschritt jederzeit nachvollziehbar.',
+  },
+];
+
+const features = [
+  { icon: 'ph:list-checks', title: 'Dokumentiertes KI-Inventar', text: 'Vollständige, versionierte Übersicht aller eingesetzten KI-Systeme.' },
+  { icon: 'ph:magnifying-glass', title: 'Strukturierte Gap-Analyse', text: 'Systematischer Abgleich mit regulatorischen Anforderungen und Nachweisen.' },
+  { icon: 'ph:list-numbers', title: 'Priorisierte Maßnahmen', text: 'Klare Handlungsempfehlungen nach Risiko und Dringlichkeit sortiert.' },
+  { icon: 'ph:users-three', title: 'Zugewiesene Verantwortlichkeiten', text: 'Eindeutige Zuständigkeiten für jede Maßnahme und jedes System.' },
+  { icon: 'ph:chart-line-up', title: 'Management-Reporting', text: 'Aufbereitete Statusberichte für Geschäftsführung und Aufsichtsgremien.' },
+];
+
+const regulatoryRows = [
+  {
+    topic: 'Art. 50 Transparenzpflichten',
+    detail: 'Chatbot-Kennzeichnung, Deepfake-Labeling',
+    deadline: 'Gilt bereits seit 2. August 2026',
+  },
+  {
+    topic: 'Hochrisiko-KI, eigenständige Systeme',
+    detail: 'Nach Anhang III',
+    deadline: 'Spätestens 2. Dezember 2027',
+  },
+  {
+    topic: 'Hochrisiko-KI, eingebettet in regulierte Produkte',
+    detail: 'Nach Anhang I, u. a. Medizinprodukte',
+    deadline: 'Spätestens 2. August 2028',
+  },
+];
+
+const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
+---
+
+<BaseLayout
+  title="Lösung"
+  description="Health AI Assurance: ein strukturiertes Verfahren für nachweisbare KI-Governance im Gesundheitswesen — für SaMD-Hersteller und Kliniken."
+>
+  <section class="section hero-solution">
+    <div class="container">
+      <p class="eyebrow">Health AI Assurance</p>
+      <h1>Ein wiederholbarer Prozess für nachweisbare KI-Governance</h1>
+      <p class="lead">
+        Health AI Assurance ist ein strukturiertes Verfahren für nachweisbare KI-Governance im
+        Gesundheitswesen — für SaMD-Hersteller ebenso wie für Kliniken. Kein einmaliges Beratungsgespräch,
+        sondern ein wiederholbarer Prozess, der Verantwortlichkeiten schafft und Nachweise liefert.
+      </p>
+      <a
+        class="login-badge"
+        href="https://app.healthaiassurance.de"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Icon name="ph:sign-in" aria-hidden="true" />
+        Login für Bestandskunden
+      </a>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Der Prozess</h2>
+      <div class="process">
+        {
+          processSteps.map((step) => (
+            <div class="process-step">
+              <span class="step-number">{step.n}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Konkrete Lieferergebnisse</h2>
+      <div class="card-grid">
+        {
+          features.map((feature) => (
+            <Card>
+              <Icon name={feature.icon} class="feature-icon" aria-hidden="true" width="28" height="28" />
+              <h3>{feature.title}</h3>
+              <p>{feature.text}</p>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <Card class="boundary-card">
+        <p>
+          <strong>Assurance bedeutet bei Health AI Assurance:</strong> systematische Überprüfung, dokumentierte
+          Verantwortlichkeiten und nachvollziehbare Nachweise. Keine pauschale Sicherheitsgarantie und keine
+          gesetzliche Konformitätsbewertung oder Zertifizierung.
+        </p>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Regulatorischer Rahmen</h2>
+      <p class="stand">Stand: {stichtag}</p>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Anforderung</th>
+              <th scope="col">Details</th>
+              <th scope="col">Frist</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              regulatoryRows.map((row) => (
+                <tr>
+                  <td>{row.topic}</td>
+                  <td>{row.detail}</td>
+                  <td>{row.deadline}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="badge-row standards-row">
+        {badges.map((badge) => <Badge>{badge}</Badge>)}
+      </div>
+    </div>
+  </section>
+
+  <ContactCta />
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 68ch;
+    font-size: 1.1rem;
+    margin-bottom: 1.75em;
+  }
+
+  .login-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .login-badge :global(svg) {
+    width: 18px;
+    height: 18px;
+  }
+
+  .card-grid :global(.feature-icon) {
+    color: var(--color-accent);
+    margin-bottom: 12px;
+  }
+
+  .boundary-card p {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .stand {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.25em;
+  }
+
+  .standards-row {
+    margin-top: 24px;
+  }
+</style>

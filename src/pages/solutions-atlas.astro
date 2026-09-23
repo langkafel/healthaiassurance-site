@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmbedFrame from '../components/EmbedFrame.astro';
+import Callout from '../components/Callout.astro';
+---
+
+<BaseLayout
+  title="Solutions Atlas"
+  description="FDA-zugelassene KI-Medizinprodukte im Überblick: 1.614 Einträge, durchsuchbar und filterbar — mit Quellenangaben."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Research Dashboard</p>
+      <h1>Solutions Atlas</h1>
+      <p class="lead">
+        Ein durchsuchbarer Überblick über von der FDA zugelassene KI-Medizinprodukte, mit Einordnung nach
+        Fachbereich, Jahr und Zulassungsart.
+      </p>
+
+      <Callout icon="ph:warning-circle">
+        <p>
+          <strong>Haftungsausschluss:</strong> Die Angaben in diesem Atlas basieren auf öffentlich zugänglichen
+          FDA-Datenbanken und weiteren Quellen (siehe Reiter „Quellen &amp; Methodik" im Dashboard). Für die
+          Vollständigkeit, Aktualität und Richtigkeit der Daten wird keine Gewähr übernommen. Für Europa und den
+          DACH-Raum liegen aktuell keine vergleichbar strukturierten CE-Zulassungsdaten vor — die entsprechende
+          Datenlücke wird im Bereich „International" gesondert erläutert.
+        </p>
+      </Callout>
+
+      <div class="atlas-frame">
+        <EmbedFrame src="/embeds/solutions-atlas.html" title="Health AI Assurance Solutions Atlas" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 68ch;
+    font-size: 1.05rem;
+    margin-bottom: 1.75em;
+  }
+
+  .atlas-frame {
+    margin-top: 1.75em;
+  }
+</style>

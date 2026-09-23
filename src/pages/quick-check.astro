@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EmbedFrame from '../components/EmbedFrame.astro';
+---
+
+<BaseLayout
+  title="Quick Check"
+  description="12 Fragen, um in wenigen Minuten eine erste Einschätzung zu Ihrem KI-Governance-Status zu erhalten."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Selbsttest</p>
+      <h1>Quick Check</h1>
+      <p class="lead">
+        12 Fragen für eine erste Einschätzung, wo Sie bei der KI-Governance stehen — unverbindlich und ohne
+        Anmeldung.
+      </p>
+      <EmbedFrame src="/embeds/quick-check.html" title="Health AI Assurance Quick Check" />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 60ch;
+    font-size: 1.05rem;
+    margin-bottom: 2em;
+  }
+</style>

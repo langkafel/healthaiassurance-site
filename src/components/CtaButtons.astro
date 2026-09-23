@@ -1,0 +1,37 @@
+---
+interface CtaLink {
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+interface Props {
+  primary: CtaLink;
+  secondary?: CtaLink;
+}
+
+const { primary, secondary } = Astro.props;
+---
+
+<div class="btn-group">
+  <a
+    class="btn btn-primary"
+    href={primary.href}
+    target={primary.external ? '_blank' : undefined}
+    rel={primary.external ? 'noopener noreferrer' : undefined}
+  >
+    {primary.label}
+  </a>
+  {
+    secondary && (
+      <a
+        class="btn btn-secondary"
+        href={secondary.href}
+        target={secondary.external ? '_blank' : undefined}
+        rel={secondary.external ? 'noopener noreferrer' : undefined}
+      >
+        {secondary.label}
+      </a>
+    )
+  }
+</div>

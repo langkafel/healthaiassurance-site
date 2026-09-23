@@ -1,0 +1,12 @@
+---
+interface Props {
+  alt?: boolean;
+  class?: string;
+}
+
+const { alt = false, class: className = '' } = Astro.props;
+---
+
+<div class:list={['card', { 'card-alt': alt }, className]}>
+  <slot />
+</div>

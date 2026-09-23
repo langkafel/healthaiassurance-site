@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const ISBN = '978-3-98800-243-3';
+// TODO_MEDHOCHZWEI_URL — replace with the real medhochzwei product page URL once available.
+const MEDHOCHZWEI_URL = 'TODO_MEDHOCHZWEI_URL';
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  name: 'Vertrauenswürdige KI – Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT',
+  isbn: ISBN,
+  author: {
+    '@type': 'Person',
+    name: 'Prof. Dr. med. Peter Langkafel',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'medhochzwei Verlag',
+  },
+  inLanguage: 'de',
+};
+---
+
+<BaseLayout
+  title="Das Buch"
+  description="Vertrauenswürdige KI – Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT. Erschienen im medhochzwei Verlag."
+  structuredData={[bookSchema]}
+>
+  <section class="section book">
+    <div class="container book-grid">
+      <img
+        class="book-cover"
+        src="/img/buch-cover.webp"
+        alt="Buchcover: Vertrauenswürdige KI – Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT"
+        width="420"
+        height="600"
+      />
+
+      <div class="book-info">
+        <p class="eyebrow">Buch</p>
+        <h1>Vertrauenswürdige KI</h1>
+        <p class="subtitle">Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT</p>
+
+        <dl class="book-meta">
+          <div>
+            <dt>Verlag</dt>
+            <dd>medhochzwei Verlag</dd>
+          </div>
+          <div>
+            <dt>ISBN</dt>
+            <dd>{ISBN}</dd>
+          </div>
+        </dl>
+
+        <div class="btn-group">
+          <a class="btn btn-primary" href={MEDHOCHZWEI_URL} target="_blank" rel="noopener noreferrer">
+            Beim Verlag ansehen
+          </a>
+          <span class="btn-soon" aria-disabled="true">
+            Materialien zum Buch
+            <span class="soon-badge">Coming soon</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .book-grid {
+    display: grid;
+    grid-template-columns: minmax(200px, 320px) 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: start;
+  }
+
+  .book-cover {
+    width: 100%;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-border);
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    margin-bottom: 1.5em;
+  }
+
+  .book-meta {
+    display: flex;
+    gap: 32px;
+    margin: 0 0 2em;
+  }
+
+  .book-meta dt {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: 4px;
+  }
+
+  .book-meta dd {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .soon-badge {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+
+  @media (max-width: 680px) {
+    .book-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .book-cover {
+      max-width: 260px;
+      margin-inline: auto;
+    }
+  }
+</style>

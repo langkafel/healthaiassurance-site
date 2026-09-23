@@ -1,0 +1,43 @@
+---
+import CtaButtons from './CtaButtons.astro';
+
+// TODO: replace with Peter's actual LinkedIn profile URL once available.
+const LINKEDIN_URL = 'https://www.linkedin.com/in/TODO-linkedin-profil';
+---
+
+<section class="section contact-cta">
+  <div class="container">
+    <div class="card contact-cta-card">
+      <h2>Fragen zu Health AI Assurance?</h2>
+      <p>
+        Ob Ersteinschätzung, Vorbereitung auf den EU AI Act oder eine konkrete Projektanfrage — sprechen Sie
+        direkt mit Peter Langkafel.
+      </p>
+      <CtaButtons
+        primary={{ label: 'Beratungsgespräch anfragen', href: 'mailto:info@peter-langkafel.de' }}
+        secondary={{ label: 'LinkedIn-Profil', href: LINKEDIN_URL, external: true }}
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cta-card {
+    text-align: center;
+    padding: clamp(32px, 5vw, 56px);
+  }
+
+  .contact-cta-card h2 {
+    margin-bottom: 0.4em;
+  }
+
+  .contact-cta-card p {
+    max-width: 56ch;
+    margin-inline: auto;
+    margin-bottom: 1.75em;
+  }
+
+  .contact-cta-card :global(.btn-group) {
+    justify-content: center;
+  }
+</style>

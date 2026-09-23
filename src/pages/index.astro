@@ -1,0 +1,304 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Card from '../components/Card.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import ContactCta from '../components/ContactCta.astro';
+import { Icon } from 'astro-icon/components';
+
+const processSteps = [
+  { n: '01', title: 'Erfassen', text: 'KI-Systeme und Einsatzbereiche identifizieren' },
+  { n: '02', title: 'Bewerten', text: 'Anforderungen, Risiken und Nachweise strukturiert prüfen' },
+  { n: '03', title: 'Handeln', text: 'Maßnahmen und Verantwortliche festlegen' },
+  { n: '04', title: 'Überwachen', text: 'Status, Änderungen und Vorfälle nachvollziehbar verfolgen' },
+];
+
+const resources = [
+  {
+    icon: 'ph:siren',
+    title: 'Incident Atlas',
+    text: 'Dokumentierte Vorfälle rund um KI im Gesundheitswesen.',
+    href: '/incident-atlas',
+  },
+  {
+    icon: 'ph:check-square-offset',
+    title: 'Quick Check',
+    text: '12 Fragen für eine erste Einschätzung Ihres Governance-Status.',
+    href: '/quick-check',
+  },
+  {
+    icon: 'ph:compass',
+    title: 'Solutions Atlas',
+    text: 'FDA-zugelassene KI-Medizinprodukte im Überblick.',
+    href: '/solutions-atlas',
+  },
+  {
+    icon: 'ph:book-open',
+    title: 'Das Buch',
+    text: 'Der Management-Leitfaden für Gesundheitswesen, MedTech und Health-IT.',
+    href: '/buch',
+  },
+];
+---
+
+<BaseLayout
+  title="Startseite"
+  description="Welche KI-Systeme sind bei Ihnen im Einsatz? Health AI Assurance macht KI-Governance im Gesundheitswesen nachweisbar."
+>
+  <section class="section hero">
+    <div class="container">
+      <p class="eyebrow">AI Governance for Healthcare</p>
+      <h1>KI im Gesundheitswesen einsetzen. Verantwortung nachweisbar machen.</h1>
+      <p class="lead">
+        Welche KI-Systeme sind bei Ihnen im Einsatz? Welche regulatorischen Anforderungen gelten? Und wie
+        stellen Sie sicher, dass Risiken erkannt, Verantwortlichkeiten geklärt und Maßnahmen umgesetzt werden?
+      </p>
+      <CtaButtons
+        primary={{ label: 'Erstgespräch vereinbaren', href: 'mailto:info@peter-langkafel.de' }}
+        secondary={{ label: 'Wissenscheck starten', href: '/quick-check' }}
+      />
+      <p class="audience-line">Für Kliniken, Klinikverbünde, Health-IT- und MedTech-Hersteller.</p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Der Prozess</h2>
+      <div class="process">
+        {
+          processSteps.map((step) => (
+            <div class="process-step">
+              <span class="step-number">{step.n}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>So sieht Governance im Alltag aus</h2>
+      <div class="dashboard-mock" role="img" aria-label="Beispielhaftes KI-Register mit Bearbeitungsstatus, Verantwortlichkeiten und offenen Maßnahmen">
+        <div class="dashboard-mock-header">
+          <span>KI-Register</span>
+          <span class="dashboard-count">4 offene Maßnahmen</span>
+        </div>
+        <table class="dashboard-mock-table">
+          <thead>
+            <tr>
+              <th>System</th>
+              <th>Status</th>
+              <th>Verantwortlich</th>
+              <th>Nächste Prüfung</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Sepsis-Frühwarnung</td>
+              <td><span class="status status-ok">Freigegeben</span></td>
+              <td>Dr. Weber</td>
+              <td>Q1 2027</td>
+            </tr>
+            <tr>
+              <td>Radiologie-Triage</td>
+              <td><span class="status status-progress">In Prüfung</span></td>
+              <td>Dr. Yılmaz</td>
+              <td>Q4 2026</td>
+            </tr>
+            <tr>
+              <td>Dokumentations-Assistent</td>
+              <td><span class="status status-open">Maßnahme offen</span></td>
+              <td>M. Krüger</td>
+              <td>Q4 2026</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mock-disclaimer">
+        Beispielhafte Darstellung, keine echten Kundendaten und kein verifizierter Screenshot der bestehenden
+        Plattform.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="audience-grid">
+        <Card>
+          <p class="eyebrow">Für Kliniken</p>
+          <h3>
+            Welche KI wird wo eingesetzt, wer trägt Verantwortung, was muss überwacht werden?
+          </h3>
+          <p>
+            KI-Inventarisierung, Risikoeinschätzung, Procurement Gate, Freigaben und laufende Governance —
+            strukturiert und nachvollziehbar.
+          </p>
+        </Card>
+        <Card>
+          <p class="eyebrow">Für Hersteller</p>
+          <h3>
+            Wie werden regulatorische Anforderungen systematisch in Entwicklung, Dokumentation und QM
+            eingebunden?
+          </h3>
+          <p>
+            Strukturierte Selbstauskunft, Gap-Analyse, Nachweise und priorisierte Maßnahmen entlang des
+            gesamten Produktlebenszyklus.
+          </p>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <section class="section resources">
+    <div class="container">
+      <h2>Ressourcen</h2>
+      <div class="card-grid">
+        {
+          resources.map((resource) => (
+            <Card alt class="resource-card">
+              <Icon name={resource.icon} aria-hidden="true" width="26" height="26" class="resource-icon" />
+              <h3>{resource.title}</h3>
+              <p>{resource.text}</p>
+              <a class="resource-link" href={resource.href}>
+                Mehr erfahren <Icon name="ph:arrow-right" aria-hidden="true" width="16" height="16" />
+              </a>
+            </Card>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <ContactCta />
+</BaseLayout>
+
+<style>
+  .lead {
+    max-width: 68ch;
+    font-size: 1.1rem;
+    margin-bottom: 1.75em;
+  }
+
+  .audience-line {
+    margin-top: 1.5em;
+    margin-bottom: 0;
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+  }
+
+  .dashboard-mock {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+  }
+
+  .dashboard-mock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--color-border);
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  .dashboard-count {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: var(--color-amber);
+    color: var(--color-accent-ink);
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+  }
+
+  .dashboard-mock-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .dashboard-mock-table th,
+  .dashboard-mock-table td {
+    text-align: left;
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .dashboard-mock-table th {
+    color: var(--color-text-muted);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .dashboard-mock-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+  }
+
+  /* Solid backgrounds with dark ink text keep these at WCAG AA contrast
+     (a same-hue tint-on-card combination falls short for text this small). */
+  .status-ok {
+    background: var(--color-green);
+    color: var(--color-accent-ink);
+  }
+
+  .status-progress {
+    background: var(--color-accent);
+    color: var(--color-accent-ink);
+  }
+
+  .status-open {
+    background: var(--color-amber);
+    color: var(--color-accent-ink);
+  }
+
+  .mock-disclaimer {
+    margin-top: 14px;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .audience-grid {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .audience-grid h3 {
+    font-size: 1.15rem;
+  }
+
+  .resources h2 {
+    margin-bottom: 8px;
+  }
+
+  .card-grid :global(.resource-icon) {
+    color: var(--color-accent);
+    margin-bottom: 10px;
+  }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-top: 4px;
+  }
+</style>

@@ -1,0 +1,29 @@
+---
+interface Props {
+  src: string;
+  title: string;
+}
+
+const { src, title } = Astro.props;
+---
+
+<div class="embed-frame">
+  <iframe src={src} title={title} loading="lazy"></iframe>
+</div>
+
+<style>
+  .embed-frame {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    height: min(1400px, calc(100vh - 220px));
+    min-height: 640px;
+  }
+
+  .embed-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: var(--color-bg);
+  }
+</style>
