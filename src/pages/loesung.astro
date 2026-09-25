@@ -132,7 +132,7 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
   <section class="section section-alt">
     <div class="container">
       <h2>Der Prozess</h2>
-      <div class="process">
+      <div class="process process-wide-text">
         {
           processSteps.map((step) => (
             <div class="process-step">
@@ -373,6 +373,18 @@ const badges = ['MDR/IVDR', 'ISO/IEC 42001', 'DSGVO', 'BSI B3S/KRITIS', 'NIS2'];
 
   .perspective-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Ausführliche Schritt-Texte: hier 3+2 statt der 5 Spalten der Startseite. */
+  @media (min-width: 1120px) {
+    .process-wide-text {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .process-wide-text :global(.process-step) {
+      padding: 24px;
+    }
   }
 
   .persp-quote {
