@@ -55,7 +55,11 @@ const isActive = (href: string) =>
         <Icon name="ph:envelope-simple" aria-hidden="true" />
         Kontakt
       </a>
-      <a class="login-link" href="https://app.healthaiassurance.de" target="_blank" rel="noopener noreferrer">
+      <a
+        class="login-link"
+        href="/login"
+        aria-current={isActive('/login') ? 'page' : undefined}
+      >
         <Icon name="ph:sign-in" aria-hidden="true" />
         Login für Bestandskunden
       </a>

@@ -93,7 +93,7 @@ Alle in `src/components/` (Astro-Komponenten), Stile in `src/styles/components.c
 | Komponente | Zweck / Schnittstelle |
 | --- | --- |
 | `BaseLayout.astro` (Layout) | Setzt `<head>`: Title (`<title> · Health AI Assurance`), Description, Canonical, Open-Graph-/Twitter-Tags inkl. Bild, Favicons, Font-Preloads, JSON-LD (`Organization` immer + `structuredData`-Prop), optional `noindex`. Props: `title`, `description`, `structuredData?`, `noindex?`, `ogImage?` (Standard `/og/og-default.png`, 1200×630), `ogImageAlt?`. Rendert Skip-Link, `Nav`, `<main id="main-content">`, `Footer`. |
-| `Nav.astro` | Header, sticky. Links: Lösung, Incident Atlas, Solutions Atlas, Quick Check, Buch; rechts „Kontakt“ (→ `/kontakt`) und „Login für Bestandskunden“ (extern). Prop `currentPath` steuert `aria-current`. Unter 860 px: Drawer mit Toggle-Skript. |
+| `Nav.astro` | Header, sticky. Links: Lösung, Incident Atlas, Solutions Atlas, Quick Check, Buch; rechts „Kontakt“ (→ `/kontakt`) und „Login für Bestandskunden“ (→ `/login`, intern). Prop `currentPath` steuert `aria-current`. Unter 860 px: Drawer mit Toggle-Skript. |
 | `Footer.astro` | Name, Impressum, Datenschutz, Kontakt, Copyright (Jahr wird zur Build-Zeit gesetzt). |
 | `Card.astro` | Fläche mit Rahmen. Props: `alt?` (`--color-card-alt`), `class?`. Slot. |
 | `Badge.astro` | Kleines Etikett (Rahmen, gedämpfter Text). Gruppierung mit `.badge-row`. Nur neutral — farbcodierte Status-Pills sind seitenlokal. |

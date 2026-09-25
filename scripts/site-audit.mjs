@@ -27,6 +27,7 @@ const ROUTES = [
   { path: '/incident-atlas', slug: 'incident-atlas', hasIframe: true },
   { path: '/quick-check', slug: 'quick-check' },
   { path: '/solutions-atlas', slug: 'solutions-atlas', hasIframe: true },
+  { path: '/login', slug: 'login' },
   { path: '/impressum', slug: 'impressum' },
   { path: '/datenschutz', slug: 'datenschutz' },
 ];
@@ -37,7 +38,6 @@ const VIEWPORTS = [
 ];
 
 const KNOWN_TODOS = new Set(['TODO_MEDHOCHZWEI_URL', 'https://www.linkedin.com/in/TODO-linkedin-profil']);
-const EXPECTED_LOGIN = 'https://app.healthaiassurance.de';
 const EXPECTED_MAILTO = 'mailto:info@peter-langkafel.de';
 const EXPECTED_PL_LINK = 'https://peter-langkafel.de';
 
@@ -181,12 +181,11 @@ async function checkLinks(routeReport) {
       continue;
     }
     if (href.startsWith('http')) {
-      const isLogin = href.startsWith(EXPECTED_LOGIN);
       const isPL = href.startsWith(EXPECTED_PL_LINK);
       const check = await checkedFetch(href);
       results.push({
         href,
-        kind: isLogin ? 'login-external' : isPL ? 'peter-langkafel-external' : 'external',
+        kind: isPL ? 'peter-langkafel-external' : 'external',
         ok: check.ok,
         note: `status ${check.status}`,
       });

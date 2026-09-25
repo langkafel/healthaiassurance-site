@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaButtons from '../components/CtaButtons.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<BaseLayout
+  title="Plattform-Zugang"
+  description="Die Health-AI-Assurance-Plattform befindet sich in der finalen Vorbereitung. Melden Sie sich als Pilotkunde."
+>
+  <section class="section login-page">
+    <div class="container">
+      <p class="eyebrow">Plattform-Zugang</p>
+      <h1>Bald verfügbar</h1>
+      <p class="lead">
+        Die Health-AI-Assurance-Plattform befindet sich aktuell in der finalen Vorbereitung. Wenn Sie
+        Interesse haben, einer unserer ersten Pilotkunden zu werden, freue ich mich über Ihre Nachricht.
+      </p>
+
+      <CtaButtons primary={{ label: 'Als Pilotkunde melden', href: 'mailto:info@peter-langkafel.de' }} />
+
+      <a class="back-link" href="/">
+        <Icon name="ph:arrow-left" aria-hidden="true" width="14" height="14" />
+        Zurück zur Startseite
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .login-page {
+    padding-top: clamp(56px, 9vw, 120px);
+  }
+
+  .lead {
+    max-width: 60ch;
+    font-size: 1.1rem;
+    margin-bottom: 1.75em;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+</style>

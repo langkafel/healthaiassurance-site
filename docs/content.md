@@ -11,6 +11,7 @@
 | `/solutions-atlas` | `pages/solutions-atlas.astro` | Übersicht KI-basierter Medizinprodukte (FDA-Daten + internationale Regulierung) | Hersteller, Regulatory Affairs, Beschaffung |
 | `/quick-check` | `pages/quick-check.astro` | 15-Fragen-Wissenstest zu KI-Governance im Gesundheitswesen (Lead-in zum Buch/zur Lösung) | Breite Fachöffentlichkeit |
 | `/kontakt` | `pages/kontakt.astro` | Kontaktseite (mailto), Ziel der „Kontakt“-Links in Header/Footer | Interessenten |
+| `/login` | `pages/login.astro` | Coming-soon-Hinweis „Bald verfügbar“, Ziel des Nav-Punkts „Login für Bestandskunden“ (mailto für Pilotkunden) | Bestands-/Pilotkunden |
 | `/impressum` | `pages/impressum.astro` | Pflichtangaben (§ 5 DDG) | Rechtlich |
 | `/datenschutz` | `pages/datenschutz.astro` | Datenschutzerklärung (siehe [open-items.md](open-items.md): juristische Prüfung offen) | Rechtlich |
 | `/404` | `pages/404.astro` | Fehlerseite (`noindex`, nicht in der Sitemap) | — |

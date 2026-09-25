@@ -10,7 +10,7 @@ kein Tracking. Ziel-Domain: `healthaiassurance.de`.
 ## Verhältnis zu `app.healthaiassurance.de`
 
 Die eigentliche Plattform (Next.js/Supabase, mit Kundendaten) ist ein **separates Repo und ein separates
-System** unter `app.healthaiassurance.de`. Diese Seite verlinkt nur dorthin („Login für Bestandskunden“),
+System** unter `app.healthaiassurance.de`. Diese Seite verlinkt derzeit **nicht** dorthin: „Login für Bestandskunden“ führt auf die interne Coming-soon-Seite `/login`,
 teilt aber weder Code noch Deployment noch Daten mit ihr. Warum das so getrennt ist:
 [docs/architecture.md](docs/architecture.md).
 
