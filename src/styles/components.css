@@ -124,7 +124,31 @@
 .process {
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: 1fr;
+}
+
+/* Fünf Schritte: 5 Spalten → 3+2 → 2 → 1 (auto-fit würde bei 5 Karten eine einzelne Waise erzeugen). */
+@media (min-width: 560px) {
+  .process {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 800px) {
+  .process {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1120px) {
+  .process {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .process .process-step {
+    padding: 20px;
+  }
 }
 
 .process-step {
